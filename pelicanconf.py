@@ -18,13 +18,15 @@ LOCALE = "C"
 DEFAULT_PAGINATION = 4
 DEFAULT_DATE = (1969, 12, 31, 23, 59, 59)
 
-FEED_ALL_RSS = "feeds/all.rss.xml"
-CATEGORY_FEED_RSS = "feeds/%s.rss.xml"
+# Feeds
+FEED_ATOM = 'feed/atom.xml'
+FEED_DOMAIN = SITEURL
 
 # LINKS = (("kili", "http://kili.io"),)
 
 SOCIAL = (("github", "https://github.com/mrmoje"),
           ("twitter", "https://twitter.com/mrmoje"),
+          ("rss", "http://tdt.rocks/feeds/atom.xml"),
           ("stackoverflow", "https://stackoverflow.com/users/1002644/moje"))
 
 # global metadata to all the contents
@@ -52,7 +54,10 @@ THEME = "pelican-alchemy/alchemy"
 HIDE_SIDEBAR = True
 CUSTOM_CSS = 'css/overrides.css'
 SHOW_ARTICLE_AUTHOR = True
-DISPLAY_PAGES_ON_MENU = True
-DISPLAY_CATEGORIES_ON_MENU = True
-DISPLAY_ARCHIVES_ON_MENU = False
+PAGES_ON_MENU = True
+CATEGORIES_ON_MENU = True
+TAGS_ON_MENU = False
+ARCHIVES_ON_MENU = False
 DEFAULT_DATE_FORMAT = ('%B %d, %Y')
+
+GOOGLE_ANALYTICS_ID = 'UA-71190709-1'
