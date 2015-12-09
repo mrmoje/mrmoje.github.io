@@ -43,7 +43,8 @@ STATIC_PATHS = [
     'js',
     'css',
     'extra/robots.txt',
-    'CNAME'
+    'CNAME',
+    'README.md'
 ]
 
 # code blocks with line numbers
