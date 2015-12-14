@@ -50,6 +50,8 @@ STATIC_PATHS = [
 # code blocks with line numbers
 PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
 
+MD_EXTENSIONS = ['toc', 'nl2br']
+
 # tdt specific prefs
 THEME = "pelican-alchemy/alchemy"
 HIDE_SIDEBAR = True
