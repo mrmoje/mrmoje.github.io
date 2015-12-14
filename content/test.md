@@ -1,12 +1,15 @@
-Title: TEST
+Title: TEST POST
 Tags: testing
 Slug: testing
 Category: TEST
 Author: James Nzomo
-Summary: TEST SUMMARY
+Summary: A simple test post...complete with a PAL test pattern and an annoying complementary 1KHz tone - just for your ears.
 
 <center>
 ![PM5544](https://upload.wikimedia.org/wikipedia/commons/c/c4/PM5544_with_non-PAL_signals.png)
+
+
+##Problem? &rarr; <button onclick=osc.stop()>STFU!</button>
 </center>
 <script type="text/javascript">
 var context = new AudioContext();
