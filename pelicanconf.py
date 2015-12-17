@@ -50,7 +50,7 @@ STATIC_PATHS = [
 # code blocks with line numbers
 PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
 
-MD_EXTENSIONS = ['toc', 'nl2br']
+MD_EXTENSIONS = ['toc', 'codehilite']
 
 # tdt specific prefs
 THEME = "pelican-alchemy/alchemy"
