@@ -21,7 +21,7 @@ osc.connect(vol);
 vol.connect(context.destination);
 osc.start(0);
 // Problem?
-osc.stop();
+//osc.stop();
 </script>
 
 <hr>
