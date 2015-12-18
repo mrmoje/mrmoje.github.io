@@ -7,13 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href="./testing.html" />
 
-    <title>  TDT &mdash; TEST
+    <title>  TDT &mdash; TEST POST
 </title>
 
 
 
       <link type="application/atom+xml" rel="alternate" href="/feed/atom.xml"  title="TDT Atom Feed">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
     <link rel="stylesheet" href="./theme/css/style.css">
 
     <!--[if lt IE 9]>
@@ -33,7 +35,7 @@
   </script>
 
     <meta name="author" content="James Nzomo">
-    <meta name="description" content="TEST SUMMARY">
+    <meta name="description" content="A simple test post...complete with a PAL test pattern and an annoying complementary 1KHz tone - just for your ears.">
   <meta name="tags" contents="testing, ">
 </head>
 
@@ -62,7 +64,7 @@
 </header> <!-- /.header -->  <div class="container">
   <div class="post full-post">
     <h1 class="post-title">
-      <a href="/testing.html" title="Permalink to TEST">TEST</a>
+      <a href="/testing.html" title="Permalink to TEST POST">TEST POST</a>
     </h1>
     <hr>
     <ul class="list-inline">
@@ -85,8 +87,9 @@
     </ul>
     <div class="post-content">
       <p><center>
-<img alt="PM5544" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/PM5544_with_non-PAL_signals.png" />
-</center>
+<img alt="PM5544" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/PM5544_with_non-PAL_signals.png" /></p>
+<h2 id="problem-stfu">Problem? &rarr; <button onclick=osc.stop()>STFU!</button></h2>
+<p></center>
 <script type="text/javascript">
 var context = new AudioContext();
 var osc = context.createOscillator();
@@ -97,8 +100,202 @@ osc.connect(vol);
 vol.connect(context.destination);
 osc.start(0);
 // Problem?
-// osc.stop();
+osc.stop();
 </script></p>
+<hr>
+
+<h1 id="test-content">TEST CONTENT</h1>
+<p>with placeholder text generated at <a href="http://slipsum.com/">Samuel L. Ipsum</a></p>
+<h1 id="h1">H1</h1>
+<h2 id="h2">H2</h2>
+<h3 id="h3">H3</h3>
+<h4 id="h4">H4</h4>
+<h5 id="h5">H5</h5>
+<h6 id="h6">H6</h6>
+<h1 id="underline-h1">Underline-H1</h1>
+<h2 id="underline-h2">Underline-H2</h2>
+<h3 id="formatting">Formatting</h3>
+<p>Asterisks -&gt; <em>Italic</em>, <strong>bold</strong>, <strong><em>bold italic</em></strong><br />
+Underscores -&gt; <em>Italic</em>, <strong>bold</strong>, <strong><em>bold italic</em></strong><br />
+<code>monospace</code><br />
+~~~strikethrough text~~~</p>
+<h3 id="paragraph-one">Paragraph one</h3>
+<p>Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is
+advertised as the most popular gun in American crime. Do you believe that shit?
+It actually says that in the little book that comes with it: the most popular
+gun in American crime. Like they're actually proud of that shit.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span class="c1">//function sets</span>
+<span class="kt">void</span> <span class="nf">set_portAbit</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">bt</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">val</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">val</span> <span class="o">?</span> <span class="p">(</span> <span class="n">sPORTA</span> <span class="o">|=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">bt</span> <span class="p">)</span> <span class="o">:</span> <span class="p">(</span> <span class="n">sPORTA</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">bt</span><span class="p">)</span> <span class="p">);</span>
+    <span class="n">PORTA</span> <span class="o">=</span> <span class="n">sPORTA</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="paragraph-two">Paragraph two</h3>
+<p>Well, the way they make shows is, they make one show. That show's called a pilot.
+Then they show that show to the people who make shows, and on the strength of
+that one show they decide if they're going to make more shows. Some pilots get
+picked and become television programs. Some don't, become nothing.
+She starred in one of the ones that became nothing.</p>
+<h3 id="paragraph-three-block-quotes">Paragraph three block quotes</h3>
+<blockquote>
+<p>Your bones don't break, mine do. That's clear. Your cells react to bacteria and
+viruses differently than mine. You don't get sick, I do. That's also clear. But
+for some reason, you and I react the exact same way to water. We swallow it too
+fast, we choke. We get some in our lungs, we drown. However unreal it may seem,
+we are connected, you and I. We're on the same curve, just on opposite ends.</p>
+</blockquote>
+<h3 id="longer-code-block">Longer Code block</h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55</pre></div></td><td class="code"><div class="codehilite"><pre><span class="cp">#include &lt;xc.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &lt;stdbool.h&gt;</span>
+<span class="cp">#include &lt;string.h&gt;</span>
+<span class="cp">#include &lt;ctype.h&gt;</span>
+
+<span class="c1">// #pragma config statements should precede project file includes.</span>
+<span class="c1">// Use project enums instead of #define for ON and OFF.</span>
+
+<span class="c1">// CONFIG</span>
+<span class="cp">#pragma config FOSC = INTOSCIO  </span><span class="c1">// Oscillator Selection bits (INTOSC oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O function on RA7/OSC1/CLKIN)</span>
+<span class="cp">#pragma config WDTE = OFF       </span><span class="c1">// Watchdog Timer Enable bit (WDT disabled)</span>
+<span class="cp">#pragma config PWRTE = ON       </span><span class="c1">// Power-up Timer Enable bit (PWRT enabled)</span>
+<span class="cp">#pragma config MCLRE = ON       </span><span class="c1">// RA5/MCLR/VPP Pin Function Select bit (RA5/MCLR/VPP pin function is MCLR)</span>
+<span class="cp">#pragma config BOREN = ON       </span><span class="c1">// Brown-out Detect Enable bit (BOD enabled)</span>
+<span class="cp">#pragma config LVP = OFF        </span><span class="c1">// Low-Voltage Programming Enable bit (RB4/PGM pin has digital I/O function, HV on MCLR must be used for programming)</span>
+<span class="cp">#pragma config CPD = OFF        </span><span class="c1">// Data EE Memory Code Protection bit (Data memory code protection off)</span>
+<span class="cp">#pragma config CP = OFF         </span><span class="c1">// Flash Program Memory Code Protection bit (Code protection off)</span>
+
+<span class="cp">#define DEBUG</span>
+
+<span class="cp">#define _XTAL_FREQ   4000000 </span><span class="c1">// needed by some macros</span>
+<span class="cp">#define FCY _XTAL_FREQ/4</span>
+
+<span class="c1">// Comm Setup</span>
+<span class="cp">#define BAUDRATE 1200</span>
+
+
+<span class="cp">#define BUZZER_PIN RB5</span>
+<span class="cp">#define TOGGLE_BUZZER_PIN BUZZER_PIN = ~BUZZER_PIN;</span>
+
+<span class="c1">//Globals</span>
+<span class="kt">unsigned</span> <span class="kt">char</span> 
+    <span class="n">receive_buffer</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="c1">//cmd reveive buffer</span>
+    <span class="n">sPORTA</span><span class="p">;</span> <span class="c1">//PORTA Shadow register</span>
+
+
+<span class="c1">//Prototypes</span>
+<span class="kt">void</span>
+    <span class="nf">BOARD_init</span><span class="p">(</span><span class="kt">void</span><span class="p">),</span>
+    <span class="n">USART_putc</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span><span class="p">),</span>
+    <span class="n">buzz_ok</span><span class="p">(</span><span class="kt">void</span><span class="p">),</span>
+    <span class="n">buzz_error</span><span class="p">(</span><span class="kt">void</span><span class="p">),</span>
+    <span class="n">set_portAbit</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">bt</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">val</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">interrupt</span> <span class="nf">ISR</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">unsigned</span> <span class="kt">char</span> <span class="nf">USART_getc</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="c1">// Main function</span>
+<span class="kt">void</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">BOARD_init</span><span class="p">();</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;INIT!</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">buzz_ok</span><span class="p">();</span>
+    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+<hr />
+<p>List of Links:</p>
+<ul>
+<li><a href="http://tdt.rocks">TDT</a></li>
+<li><a href="http://kili.io">KILI</a></li>
+<li><a href="http://nairobilug.or.ke">NLUG</a></li>
+</ul>
+<hr />
+<p>Numbered list of links:</p>
+<ol>
+<li><a href="http://www.meetup.com/OpenStack-Nairobi/">Openstack Nairobi</a></li>
+<li><a href="http://www.meetup.com/Python-Nairobi/">Python Nairobi</a></li>
+</ol>
+<hr />
+<p>Nested list:</p>
+<ol>
+<li>
+<p>Openstack Nairobi</p>
+<ul>
+<li>http://www.meetup.com/OpenStack-Nairobi</li>
+<li>https://wiki.openstack.org/wiki/Main_Page</li>
+</ul>
+</li>
+<li>
+<p>Python Nairobi</p>
+<ul>
+<li>http://www.meetup.com/Python-Nairobi</li>
+<li>https://github.com/Python-Nairobi</li>
+</ul>
+</li>
+</ol>
     </div>
   </div>
   <hr class="separator">
@@ -116,7 +313,7 @@ osc.start(0);
       of <a href="https://nairobilug.or.ke" target="_blank" >NairobiLUG's</a>
       <a href="http://github.com/nairobilug/pelican-alchemy" target="_blank">alchemy</a> theme, <br/>
       which inturn is a copy-pasta of Porter's <a href="https://github.com/porterjamesj/crowsfoot" target="_blank">crowsfoot</a> theme. <br/>
-      We maek gewd copy-pasta chain.
+      --- end of <a href="//tdt.rocks/pages/glossary#google-juice">google juice</a> ---.
     </div>
   </div>
 </footer> <!-- /.footer -->
