@@ -251,7 +251,7 @@ osc.connect(vol);
 vol.connect(context.destination);
 osc.start(0);
 // Problem?
-osc.stop();
+//osc.stop();
 &lt;/script&gt;&lt;/p&gt;
 &lt;hr&gt;
 
