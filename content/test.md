@@ -1,7 +1,7 @@
 Title: TEST POST
 Tags: testing
 Slug: testing
-Category: TEST
+Category: Testing
 Author: James Nzomo
 Summary: A simple test post...complete with a PAL test pattern and an annoying complementary 1KHz tone - just for your ears.
 
