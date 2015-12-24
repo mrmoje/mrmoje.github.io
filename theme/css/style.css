@@ -75,7 +75,7 @@
 }
 body {
   background-color: #fafafa;
-  font-family: 'Roboto', Helvetica, sans-serif;
+  font-family: Montserrat, sans-serif;
 }
 h1,
 h2,
@@ -83,7 +83,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: inherit;
 }
 code,
 kbd,
@@ -241,4 +241,6 @@ code {
   font-weight: bold;
   background-color: #efefef;
   border-radius: 4px;
+}
+body {
 }

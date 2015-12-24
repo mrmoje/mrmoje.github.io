@@ -232,7 +232,7 @@ been taken up by a multi repo mirror.&lt;/p&gt;
 take longer for the first host/request to get sorted which may be bad for
 the installing party depending on how pressed for time they are, but then again
 with life, every now and then, somebody has to take one for the team. C'est la Vie!&lt;/p&gt;
-&lt;h3 id="res-google-juice-"&gt;RES &amp;amp; google juice:-&lt;/h3&gt;
+&lt;h3 id="resources-refs-google-juice-"&gt;Resources, Refs &amp;amp; google juice:-&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="(https://trafficserver.readthedocs.org/en/5.3.x/admin/reverse-proxy-http-redirects.en.html)"&gt;Trafficserver dox on reverse proxy&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="(http://nginx.org/en/docs/http/ngx_http_proxy_module.html)"&gt;NGINX proxy module documentation&lt;/a&gt;&lt;/li&gt;
