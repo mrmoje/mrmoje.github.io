@@ -3,9 +3,10 @@ Tags: definitions, glossary, lookups
 Slug: glossary
 Author: James Nzomo
 
-<hr>
-####A growing collection of mostly useless definitions for terms, phrases, acronyms and other factoids that may or may not feature in this blawg
+---
+####A growing and ever morphing collection of mostly useless definitions for terms, phrases, acronyms and other factoids that may or may not feature in this blawg
 
+ - #####__*devops*__ - A culture, (no singular for profession). If your folks comprise of a developer and an admin, you the offspring will end up in this field or department.
  - #####__*HADD*__ - Half-assed-dumbed-down. Example:- Safcom's moneysink set top box - the shitbox runs a HADD version of android.
  - #####__*LUG*__ - Windows Vista User Group.
  - #####__*google-juice*__ - Something SEO folks usually have for breakfast.
