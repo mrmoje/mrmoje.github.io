@@ -17,6 +17,7 @@ REVERSE_CATEGORY_ORDER = True
 LOCALE = "C"
 DEFAULT_PAGINATION = 4
 DEFAULT_DATE = (1969, 12, 31, 23, 59, 59)
+DELETE_OUTPUT_DIRECTORY = True
 
 # Feeds
 FEED_ATOM = 'feed/atom.xml'
@@ -50,7 +51,7 @@ STATIC_PATHS = [
 # code blocks with line numbers
 PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
 
-MD_EXTENSIONS = ['toc', 'codehilite']
+MD_EXTENSIONS = ['toc', 'codehilite', 'attr_list']
 
 # tdt specific prefs
 THEME = "pelican-alchemy/alchemy"
