@@ -199,7 +199,7 @@ take longer for the first host/request to get sorted which may be bad for
 the installing party depending on how pressed for time they are, but then again
 with life, every now and then, somebody has to take one for the team. C'est la Vie!
 
-### RES & google juice:-
+### Resources, Refs & google juice:-
   - [Trafficserver dox on reverse proxy][trafficserver_dox]
   - [NGINX proxy module documentation][NGINX_proxy_dox]
   - An excelent tut on caching with nginx with video & docker hands-on:- <http://czerasz.com/2015/03/30/nginx-caching-tutorial/>
