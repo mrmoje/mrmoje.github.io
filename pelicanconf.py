@@ -11,7 +11,7 @@ TIMEZONE = u"Africa/Nairobi"
 RELATIVE_URLS = True
 
 GITHUB_URL = "http://github.com/mrmoje/mrmoje.github.io"
-DISQUS_SITENAME = "tdt.rocks"
+DISQUS_SITENAME = "tdtrocks"
 PDF_GENERATOR = False
 REVERSE_CATEGORY_ORDER = True
 LOCALE = "C"
