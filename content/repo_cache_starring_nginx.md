@@ -1,4 +1,4 @@
-Title: Setting up a repo cache with NGINX.
+Title: Setting up a repo cache with NGINX
 Date: 2015-12-14 03:25
 Tags: nginx, proxy, cache, linux packages
 Slug: repo_cache_ft_nginx

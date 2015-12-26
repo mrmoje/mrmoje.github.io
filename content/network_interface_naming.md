@@ -1,4 +1,4 @@
-Title: Linux network interface naming.
+Title: Linux network interface naming
 Date: 2015-12-18 03:25
 Tags: linux, systemd, network interfaces
 Slug: linux_network_interface_naming
