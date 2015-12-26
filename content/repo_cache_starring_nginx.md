@@ -45,7 +45,7 @@ out in one simple sites-available config.
 The following minimal config sets nginx to handle this biz for the ubuntu
 repos defined there in. Read on...this section continues inside the conf file as comments.
 
-    #!config
+    :::config
 
     # The upstream directive defining the backend/upstream repo hosts
     # see http://nginx.org/en/docs/http/ngx_http_upstream_module.html
