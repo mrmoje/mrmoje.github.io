@@ -4,7 +4,7 @@ Tags: linux, systemd, network interfaces
 Slug: linux_network_interface_naming
 Category: Networking
 Author: James Nzomo
-Summary: About how net-if's get their names - from the classic kernel to the biosdevname and systemd-udev way.
+Summary: About how net-if's get their names - from kernel only naming to biosdevname and systemd-udev schemes.
 
 
 # Intro
