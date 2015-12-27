@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>TDT</title><link href="/" rel="alternate"></link><link href="/feeds/networking.atom.xml" rel="self"></link><id>/</id><updated>2015-12-18T03:25:00+03:00</updated><entry><title>Linux network interface naming</title><link href="/linux_network_interface_naming.html" rel="alternate"></link><updated>2015-12-18T03:25:00+03:00</updated><author><name>James Nzomo</name></author><id>tag:,2015-12-18:linux_network_interface_naming.html</id><summary type="html">&lt;h1 id="intro"&gt;Intro&lt;/h1&gt;
 &lt;p&gt;If you are running a recent ubuntu release ( &amp;gt; 15.XX ), you've probably noticed
-that your net interfaces have been rebranded. Maybe this noticing came in the
+that your net interfaces have been "rebranded". Maybe this noticing came in the
 form of your sripts being broken....your &lt;code&gt;/etc/network/if-up.d/XXX&lt;/code&gt; script or
 vagrant-libvirt deploy failed because you hard coded an interface name in your
 scripts (bad practice which im guilty of). It worked previously on your

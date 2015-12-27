@@ -25,18 +25,19 @@
     <![endif]-->
 
   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    if (window.location.host != 'localhost:8000') {
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-71190709-1', 'auto');
-    ga('send', 'pageview');
-
+        ga('create', 'UA-71190709-1', 'auto');
+        ga('send', 'pageview');
+    }
   </script>
 
     <meta name="author" content="James Nzomo">
-    <meta name="description" content="About the transition from classic Linux network interface naming scheme and onto something better and why it matters">
+    <meta name="description" content="About how net-if's get their names - from kernel only naming to biosdevname and systemd-udev schemes.">
   <meta name="tags" contents="linux, systemd, network interfaces, ">
 </head>
 
@@ -89,7 +90,7 @@
     <div class="post-content">
       <h1 id="intro">Intro</h1>
 <p>If you are running a recent ubuntu release ( &gt; 15.XX ), you've probably noticed
-that your net interfaces have been rebranded. Maybe this noticing came in the
+that your net interfaces have been "rebranded". Maybe this noticing came in the
 form of your sripts being broken....your <code>/etc/network/if-up.d/XXX</code> script or
 vagrant-libvirt deploy failed because you hard coded an interface name in your
 scripts (bad practice which im guilty of). It worked previously on your
