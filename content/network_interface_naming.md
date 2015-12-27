@@ -4,12 +4,12 @@ Tags: linux, systemd, network interfaces
 Slug: linux_network_interface_naming
 Category: Networking
 Author: James Nzomo
-Summary: About the transition from classic Linux network interface naming scheme and onto something better and why it matters
+Summary: About how net-if's get their names - from the classic kernel to the biosdevname and systemd-udev way.
 
 
 # Intro
 If you are running a recent ubuntu release ( > 15.XX ), you've probably noticed
-that your net interfaces have been rebranded. Maybe this noticing came in the
+that your net interfaces have been "rebranded". Maybe this noticing came in the
 form of your sripts being broken....your `/etc/network/if-up.d/XXX` script or
 vagrant-libvirt deploy failed because you hard coded an interface name in your
 scripts (bad practice which im guilty of). It worked previously on your
