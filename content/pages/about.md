@@ -4,6 +4,9 @@ Slug: about
 Author: James Nzomo
 
 ---
+<div class="row">
+![Alt text](../img/author.jpg "The Author"){: .col-md-4 }
+<div class="col-md-8">
 I commit my mind to Thoughts and Deeds, on Tech ideas such as these:-
 
 In DevOps I trust, this culture - my craft, deploying to envs the systems I draft.  
@@ -19,7 +22,11 @@ For if I slack - in staging and prod - breaks, exploits and murphy's law!
 Jack of many master of none, where I lack I strive to learn.  
 I pickup fast though sometimes slow, I will not bow until I know.
 
-So there's some tech I've worked thus far, to put food on the table and beer on the bar :)
+So there's some tech I've worked thus far, to put food on the table and beer on the bar:)
+</div>
+</div>
+
+
 
 
 [openstack_hacking]: http://docs.openstack.org/developer/hacking/
