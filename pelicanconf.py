@@ -27,7 +27,7 @@ FEED_DOMAIN = SITEURL
 
 SOCIAL = (("github", "https://github.com/mrmoje"),
           ("twitter", "https://twitter.com/mrmoje"),
-          ("rss", "http://tdt.rocks/feeds/atom.xml"),
+          ("rss", "http://tdt.rocks/feed/atom.xml"),
           ("stackoverflow", "https://stackoverflow.com/users/1002644/moje"))
 
 # global metadata to all the contents
@@ -45,13 +45,26 @@ STATIC_PATHS = [
     'css',
     'extra/robots.txt',
     'CNAME',
-    'README.md'
+    'README.md',
+    'BingSiteAuth.xml',
 ]
 
 # code blocks with line numbers
 PYGMENTS_RST_OPTIONS = {'linenos': 'table'}
 
-MD_EXTENSIONS = ['toc', 'codehilite', 'attr_list']
+MD_EXTENSIONS = [
+    'toc',
+    'codehilite',
+    'attr_list'
+]
+
+PLUGIN_PATHS = [
+    './pelican-plugins'
+]
+
+PLUGINS=[
+    'sitemap'
+]
 
 # tdt specific prefs
 THEME = "pelican-alchemy/alchemy"
@@ -63,5 +76,3 @@ CATEGORIES_ON_MENU = True
 TAGS_ON_MENU = False
 ARCHIVES_ON_MENU = False
 DEFAULT_DATE_FORMAT = ('%B %d, %Y')
-
-GOOGLE_ANALYTICS_ID = 'UA-71190709-1'
