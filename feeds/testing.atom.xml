@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>TDT</title><link href="/" rel="alternate"></link><link href="/feeds/testing.atom.xml" rel="self"></link><id>/</id><updated>1969-12-31T23:59:59+03:00</updated><entry><title>TEST POST</title><link href="/testing.html" rel="alternate"></link><updated>1969-12-31T23:59:59+03:00</updated><author><name>James Nzomo</name></author><id>tag:,1969-12-31:testing.html</id><summary type="html">&lt;p&gt;&lt;center&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>TDT</title><link href="http://tdt.rocks/" rel="alternate"></link><link href="http://tdt.rocks/feeds/testing.atom.xml" rel="self"></link><id>http://tdt.rocks/</id><updated>1969-12-31T23:59:59+03:00</updated><entry><title>TEST POST</title><link href="http://tdt.rocks/testing.html" rel="alternate"></link><updated>1969-12-31T23:59:59+03:00</updated><author><name>James Nzomo</name></author><id>tag:tdt.rocks,1969-12-31:testing.html</id><summary type="html">&lt;p&gt;&lt;center&gt;
 &lt;img alt="PM5544" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/PM5544_with_non-PAL_signals.png" /&gt;&lt;/p&gt;
 &lt;h2 id="problem-stfu"&gt;Problem? &amp;rarr; &lt;button onclick=osc.stop()&gt;STFU!&lt;/button&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;/center&gt;

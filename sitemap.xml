@@ -4,140 +4,140 @@ xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitem
 xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-<loc>/index.html</loc>
-<lastmod>2015-12-28T06:07:01-00:00</lastmod>
+<loc>http://tdt.rocks/index.html</loc>
+<lastmod>2015-12-28T06:18:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/archives.html</loc>
-<lastmod>2015-12-28T06:07:01-00:00</lastmod>
+<loc>http://tdt.rocks/archives.html</loc>
+<lastmod>2015-12-28T06:18:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tags.html</loc>
-<lastmod>2015-12-28T06:07:01-00:00</lastmod>
+<loc>http://tdt.rocks/tags.html</loc>
+<lastmod>2015-12-28T06:18:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/categories.html</loc>
-<lastmod>2015-12-28T06:07:01-00:00</lastmod>
+<loc>http://tdt.rocks/categories.html</loc>
+<lastmod>2015-12-28T06:18:44-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/pages/about.html</loc>
+<loc>http://tdt.rocks/pages/about.html</loc>
 <lastmod>1969-12-31T23:59:59:%s</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/linux_network_interface_naming.html</loc>
+<loc>http://tdt.rocks/linux_network_interface_naming.html</loc>
 <lastmod>2015-12-18T03:25:00:%s</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/repo_cache_ft_nginx.html</loc>
+<loc>http://tdt.rocks/repo_cache_ft_nginx.html</loc>
 <lastmod>2015-12-14T03:25:00:%s</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/testing.html</loc>
+<loc>http://tdt.rocks/testing.html</loc>
 <lastmod>1969-12-31T23:59:59:%s</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/category/testing.html</loc>
+<loc>http://tdt.rocks/category/testing.html</loc>
 <lastmod>1969-12-31T23:59:59:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/category/networking.html</loc>
+<loc>http://tdt.rocks/category/networking.html</loc>
 <lastmod>2015-12-18T03:25:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/category/infrastructure.html</loc>
+<loc>http://tdt.rocks/category/infrastructure.html</loc>
 <lastmod>2015-12-14T03:25:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/systemd.html</loc>
+<loc>http://tdt.rocks/tag/systemd.html</loc>
 <lastmod>2015-12-18T03:25:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/testing.html</loc>
+<loc>http://tdt.rocks/tag/testing.html</loc>
 <lastmod>1969-12-31T23:59:59:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/cache.html</loc>
+<loc>http://tdt.rocks/tag/cache.html</loc>
 <lastmod>2015-12-14T03:25:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/network-interfaces.html</loc>
+<loc>http://tdt.rocks/tag/network-interfaces.html</loc>
 <lastmod>2015-12-18T03:25:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/nginx.html</loc>
+<loc>http://tdt.rocks/tag/nginx.html</loc>
 <lastmod>2015-12-14T03:25:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/linux-packages.html</loc>
+<loc>http://tdt.rocks/tag/linux-packages.html</loc>
 <lastmod>2015-12-14T03:25:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/proxy.html</loc>
+<loc>http://tdt.rocks/tag/proxy.html</loc>
 <lastmod>2015-12-14T03:25:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/tag/linux.html</loc>
+<loc>http://tdt.rocks/tag/linux.html</loc>
 <lastmod>2015-12-18T03:25:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>/author/james-nzomo.html</loc>
+<loc>http://tdt.rocks/author/james-nzomo.html</loc>
 <lastmod>2015-12-18T03:25:00:%s</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>

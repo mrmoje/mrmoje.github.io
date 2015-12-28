@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TDT</title><link>/</link><description></description><atom:link href="/feeds/james-nzomo.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 18 Dec 2015 03:25:00 +0300</lastBuildDate><item><title>Linux network interface naming</title><link>/linux_network_interface_naming.html</link><description>&lt;h1 id="intro"&gt;Intro&lt;/h1&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>TDT</title><link>http://tdt.rocks/</link><description></description><atom:link href="http://tdt.rocks/feeds/james-nzomo.rss.xml" rel="self"></atom:link><lastBuildDate>Fri, 18 Dec 2015 03:25:00 +0300</lastBuildDate><item><title>Linux network interface naming</title><link>http://tdt.rocks/linux_network_interface_naming.html</link><description>&lt;h1 id="intro"&gt;Intro&lt;/h1&gt;
 &lt;p&gt;If you are running a recent ubuntu release ( &amp;gt; 15.XX ), you've probably noticed
 that your net interfaces have been "rebranded". Maybe this noticing came in the
 form of your sripts being broken....your &lt;code&gt;/etc/network/if-up.d/XXX&lt;/code&gt; script or
@@ -131,7 +131,7 @@ and &lt;code&gt;biosdevname=0&lt;/code&gt; to the kernel at boot time.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://linux.dell.com/cgi-bin/cgit.cgi/biosdevname.git/tree/src/naming_policy.c?id=e51172768cec37ab0a350e439d2827b0c4e604a4#n31" target="_blank"&gt;biosdevname naming policy source&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://ivi.fnwi.uva.nl/sne/air//wiki/LogicalInterfaceNames/" target="_blank"&gt;An ice article on classic naming scheme and problem workarounds&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.amazon.com/gp/product/B00PKTGLWM?psc=1&amp;amp;redirect=true&amp;amp;ref_=oh_aui_d_detailpage_o00" target="_blank"&gt;How Linux Works: What Every Superuser Should Know&lt;/a&gt; by Brian Ward&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">James Nzomo</dc:creator><pubDate>Fri, 18 Dec 2015 03:25:00 +0300</pubDate><guid>tag:,2015-12-18:linux_network_interface_naming.html</guid><category>linux</category><category>systemd</category><category>network interfaces</category></item><item><title>Setting up a repo cache with NGINX</title><link>/repo_cache_ft_nginx.html</link><description>&lt;h1 id="intro"&gt;Intro&lt;/h1&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">James Nzomo</dc:creator><pubDate>Fri, 18 Dec 2015 03:25:00 +0300</pubDate><guid>tag:tdt.rocks,2015-12-18:linux_network_interface_naming.html</guid><category>linux</category><category>systemd</category><category>network interfaces</category></item><item><title>Setting up a repo cache with NGINX</title><link>http://tdt.rocks/repo_cache_ft_nginx.html</link><description>&lt;h1 id="intro"&gt;Intro&lt;/h1&gt;
 &lt;p&gt;Say you have a ton of Linux hosts package managed by apt or rpm. Maybe it's
 a cluster, cloud env or just a simple learner's lab where a large groups of
 (if not all) nodes will end up with the same or similar set of packages
@@ -302,7 +302,7 @@ with life, every now and then, somebody has to take one for the team. C'est la V
 &lt;li&gt;&lt;a href="(https://trafficserver.readthedocs.org/en/5.3.x/admin/reverse-proxy-http-redirects.en.html)"&gt;Trafficserver dox on reverse proxy&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="(http://nginx.org/en/docs/http/ngx_http_proxy_module.html)"&gt;NGINX proxy module documentation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;An excelent tut on caching with nginx with video &amp;amp; docker hands-on:- &lt;a href="http://czerasz.com/2015/03/30/nginx-caching-tutorial/"&gt;http://czerasz.com/2015/03/30/nginx-caching-tutorial/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">James Nzomo</dc:creator><pubDate>Mon, 14 Dec 2015 03:25:00 +0300</pubDate><guid>tag:,2015-12-14:repo_cache_ft_nginx.html</guid><category>nginx</category><category>proxy</category><category>cache</category><category>linux packages</category></item><item><title>TEST POST</title><link>/testing.html</link><description>&lt;p&gt;&lt;center&gt;
+&lt;/ul&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">James Nzomo</dc:creator><pubDate>Mon, 14 Dec 2015 03:25:00 +0300</pubDate><guid>tag:tdt.rocks,2015-12-14:repo_cache_ft_nginx.html</guid><category>nginx</category><category>proxy</category><category>cache</category><category>linux packages</category></item><item><title>TEST POST</title><link>http://tdt.rocks/testing.html</link><description>&lt;p&gt;&lt;center&gt;
 &lt;img alt="PM5544" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/PM5544_with_non-PAL_signals.png" /&gt;&lt;/p&gt;
 &lt;h2 id="problem-stfu"&gt;Problem? &amp;rarr; &lt;button onclick=osc.stop()&gt;STFU!&lt;/button&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;/center&gt;
@@ -511,4 +511,4 @@ we are connected, you and I. We're on the same curve, just on opposite ends.&lt;
 &lt;li&gt;https://github.com/Python-Nairobi&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">James Nzomo</dc:creator><pubDate>Wed, 31 Dec 1969 23:59:59 +0300</pubDate><guid>tag:,1969-12-31:testing.html</guid><category>testing</category></item></channel></rss>
+&lt;/ol&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">James Nzomo</dc:creator><pubDate>Wed, 31 Dec 1969 23:59:59 +0300</pubDate><guid>tag:tdt.rocks,1969-12-31:testing.html</guid><category>testing</category></item></channel></rss>
