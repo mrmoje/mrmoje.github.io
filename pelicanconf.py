@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u"James Nzomo"
 SITENAME = u"TDT"
-SITEURL = ""
+SITEURL = u"http://tdt.rocks"
 SITE_SUBTEXT = "Thoughts & Deeds on Tech"
 TIMEZONE = u"Africa/Nairobi"
 
