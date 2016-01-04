@@ -25,6 +25,10 @@ CLOUDFILES_CONTAINER=my_cloudfiles_container
 
 DROPBOX_DIR=~/Dropbox/Public/
 
+GITHUB_PUBLISH_COMMIT_MSG=\"$(filter-out $@,$(MAKECMDGOALS))\"
+
+GIT_COMMIT_MSG_IGNORE_RULE_H4X=$(filter-out $1,$(GITHUB_PUBLISH_COMMIT_MSG))
+
 DEBUG ?= 0
 ifeq ($(DEBUG), 1)
 	PELICANOPTS += -D
@@ -102,7 +106,6 @@ cf_upload: publish
 	cd $(OUTPUTDIR) && swift -v -A https://auth.api.rackspacecloud.com/v1.0 -U $(CLOUDFILES_USERNAME) -K $(CLOUDFILES_API_KEY) upload -c $(CLOUDFILES_CONTAINER) .
 
 github: publish
-	ghp-import $(OUTPUTDIR)
-	git push origin gh-pages
+	@echo ghp-import -p -b master -m $(GITHUB_PUBLISH_COMMIT_MSG) $(OUTPUTDIR)
 
-.PHONY: html help clean regenerate serve devserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github
+.PHONY: html help clean regenerate serve devserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload cf_upload github $(GIT_COMMIT_MSG_IGNORE_RULE_H4X)
