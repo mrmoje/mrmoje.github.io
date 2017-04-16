@@ -5,7 +5,7 @@
       <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="canonical" href="http://tdt.rocks/repo_cache_ft_nginx.html" />
+    <link rel="canonical" href="./repo_cache_ft_nginx.html" />
 
     <title>  TDT &mdash; Setting up a repo cache with NGINX
 </title>
@@ -16,23 +16,14 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://tdt.rocks/theme/css/pygments.css">
-    <link rel="stylesheet" href="http://tdt.rocks/theme/css/style.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+    <link rel="stylesheet" href="./theme/css/style.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-  <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-71190709-1', 'auto');
-      ga('send', 'pageview');
-  </script>
 
     <meta name="author" content="James Nzomo">
     <meta name="description" content="A simple how to on setting up a linux package manager repo cache for those situations where a full blown mirror would be simply overkill.">
@@ -45,7 +36,7 @@
     <div class="header-inner">
       <!-- <h3 class="header-text">Thoughts & Deeds on Tech</h3> -->
       <ul class="header-menu list-inline text-right">
-        <li><a class="nodec" href="http://tdt.rocks/categories.html">Categories</a></li>
+        <li><a class="nodec" href="./categories.html">Categories</a></li>
         <li class="muted">|</li>
 
         <li><a class="nodec social-link icon-github" href="https://github.com/mrmoje" target="_blank"></a></li>
@@ -54,7 +45,7 @@
         <li><a class="nodec social-link icon-stackoverflow" href="https://stackoverflow.com/users/1002644/moje" target="_blank"></a></li>
       </ul>
       <h1 class="header-name">
-        <a id="sitename" class="nodec" href="http://tdt.rocks">TDT</a>
+        <a id="sitename" class="nodec" href=".">TDT</a>
       </h1>
     </div>
   </div>
@@ -71,7 +62,7 @@
       </li>
       <li class="muted">&middot;</li>
       <li class="post-category">
-        <a href="http://tdt.rocks/category/infrastructure.html">Infrastructure</a>
+        <a href="./category/infrastructure.html">Infrastructure</a>
       </li>
         <li class="muted">&middot;</li>
         <li>
@@ -79,12 +70,12 @@
         <li class="muted">&middot;</li>
         <li>
           <address class="post-author">
-            By <a href="http://tdt.rocks/author/james-nzomo.html">James Nzomo</a>
+            By <a href="./author/james-nzomo.html">James Nzomo</a>
           </address>
         </li>
     </ul>
     <div class="post-content">
-      <h1 id="intro">Intro</h1>
+      <h1>Intro</h1>
 <p>Say you have a ton of Linux hosts package managed by apt or rpm. Maybe it's
 a cluster, cloud env or just a simple learner's lab where a large groups of
 (if not all) nodes will end up with the same or similar set of packages
@@ -98,7 +89,7 @@ option.</p>
 <p>What you probably want is a good repository caching proxy that initially fetches
 a pkg when a host has first dibs request, then stores and serves the same pkg
 for subsequent matching requests.</p>
-<h1 id="the-setup">The Setup</h1>
+<h1>The Setup</h1>
 <p>There's infinite ways to go about this. This post will cover how it's done using
 webserver reverse proxy caching feature to handle requests on behalf of a few
 upstream/origin repo servers.</p>
@@ -111,11 +102,11 @@ upstream/origin repo servers.</p>
 <a href="https://www.nginx.com/blog/nginx-caching-guide/">NGINX</a> for no apparent reason.</p>
 <p>So start by grabbing yourself some webserver:- <code>apt-get install nginx</code> and we'll sort this
 out in one simple sites-available config.</p>
-<h3 id="the-nginx-config">The NGINX config</h3>
+<h3>The NGINX config</h3>
 <p>The following minimal config sets nginx to handle this biz for the ubuntu
 repos defined there in. Read on...this section continues inside the conf file as comments.</p>
-<div class="codehilite"><pre><span class="err">#</span> <span class="nt">The</span> <span class="nt">upstream</span> <span class="nt">directive</span> <span class="nt">defining</span> <span class="nt">the</span> <span class="nt">backend</span><span class="o">/</span><span class="nt">upstream</span> <span class="nt">repo</span> <span class="nt">hosts</span>
-<span class="err">#</span> <span class="nt">see</span> <span class="nt">http</span><span class="o">://</span><span class="nt">nginx</span><span class="nc">.org</span><span class="o">/</span><span class="nt">en</span><span class="o">/</span><span class="nt">docs</span><span class="o">/</span><span class="nt">http</span><span class="o">/</span><span class="nt">ngx_http_upstream_module</span><span class="nc">.html</span>
+<div class="highlight"><pre><span></span><span class="err">#</span> <span class="nt">The</span> <span class="nt">upstream</span> <span class="nt">directive</span> <span class="nt">defining</span> <span class="nt">the</span> <span class="nt">backend</span><span class="o">/</span><span class="nt">upstream</span> <span class="nt">repo</span> <span class="nt">hosts</span>
+<span class="err">#</span> <span class="nt">see</span> <span class="nt">http</span><span class="o">://</span><span class="nt">nginx</span><span class="p">.</span><span class="nc">org</span><span class="o">/</span><span class="nt">en</span><span class="o">/</span><span class="nt">docs</span><span class="o">/</span><span class="nt">http</span><span class="o">/</span><span class="nt">ngx_http_upstream_module</span><span class="p">.</span><span class="nc">html</span>
 <span class="err">#</span> <span class="nt">There</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">primary</span> <span class="nt">and</span> <span class="nt">a</span> <span class="nt">backup</span><span class="o">.</span> <span class="nt">You</span> <span class="nt">can</span> <span class="nt">have</span> <span class="nt">more</span> <span class="nt">than</span> <span class="nt">that</span><span class="o">.</span>
 <span class="err">#</span> <span class="nt">NGINX</span> <span class="nt">will</span> <span class="nt">try</span> <span class="nt">to</span> <span class="nt">load</span> <span class="nt">balance</span> <span class="nt">between</span> <span class="nt">them</span> <span class="nt">using</span> <span class="nt">a</span> <span class="s2">&quot;weighted round-robin&quot;</span>
 <span class="err">#</span> <span class="nt">algorithm</span><span class="o">.</span>
@@ -125,22 +116,22 @@ repos defined there in. Read on...this section continues inside the conf file as
 <span class="err">#</span> <span class="nt">By</span> <span class="nt">default</span> <span class="nt">I</span> <span class="nt">found</span> <span class="nt">that</span> <span class="nt">if</span> <span class="nt">one</span> <span class="nt">is</span> <span class="nt">unreachable</span> <span class="nt">during</span> <span class="nt">startup</span><span class="o">,</span> <span class="nt">nginx</span> <span class="nt">will</span>
 <span class="err">#</span> <span class="nt">kaput</span> <span class="nt">leaving</span> <span class="nt">clues</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">error</span> <span class="nt">log</span><span class="o">.</span>
 <span class="nt">upstream</span> <span class="nt">ubuntu</span> <span class="p">{</span>
-  <span class="n">server</span> <span class="n">ke</span><span class="o">.</span><span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span><span class="p">;</span>
-  <span class="n">server</span> <span class="n">archive</span><span class="o">.</span><span class="n">ubuntu</span><span class="o">.</span><span class="n">com</span> <span class="n">backup</span><span class="p">;</span>
+  <span class="err">server</span> <span class="err">ke.archive.ubuntu.com</span><span class="p">;</span>
+  <span class="err">server</span> <span class="err">archive.ubuntu.com</span> <span class="err">backup</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="err">#</span> <span class="nt">The</span> <span class="nt">following</span> <span class="nt">directive</span> <span class="nt">configures</span> <span class="nt">the</span> <span class="nt">cache</span><span class="o">.</span> <span class="nt">Storage</span> <span class="nt">et</span> <span class="nt">all</span><span class="o">.</span> <span class="nt">You</span> <span class="nt">may</span> <span class="nt">want</span>
 <span class="err">#</span> <span class="nt">the</span> <span class="nt">storage</span> <span class="nt">location</span>  <span class="nt">at</span> <span class="nt">a</span> <span class="nt">mount</span> <span class="nt">point</span> <span class="nt">with</span> <span class="nt">a</span> <span class="nt">filesystem</span> <span class="nt">on</span> <span class="nt">separate</span> <span class="nt">storage</span>
 <span class="err">#</span> <span class="nt">device</span><span class="o">/</span><span class="nt">backend</span> <span class="nt">to</span> <span class="nt">match</span><span class="o">.</span>
-<span class="err">#</span> <span class="nt">see</span> <span class="nt">http</span><span class="o">://</span><span class="nt">nginx</span><span class="nc">.org</span><span class="o">/</span><span class="nt">en</span><span class="o">/</span><span class="nt">docs</span><span class="o">/</span><span class="nt">http</span><span class="o">/</span><span class="nt">ngx_http_proxy_module</span><span class="nc">.html</span><span class="nf">#proxy_cache_path</span><span class="o">.</span>
+<span class="err">#</span> <span class="nt">see</span> <span class="nt">http</span><span class="o">://</span><span class="nt">nginx</span><span class="p">.</span><span class="nc">org</span><span class="o">/</span><span class="nt">en</span><span class="o">/</span><span class="nt">docs</span><span class="o">/</span><span class="nt">http</span><span class="o">/</span><span class="nt">ngx_http_proxy_module</span><span class="p">.</span><span class="nc">html</span><span class="p">#</span><span class="nn">proxy_cache_path</span><span class="o">.</span>
 <span class="nt">proxy_cache_path</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">repo_mirror</span> <span class="err">#</span> <span class="nt">defines</span> <span class="nt">where</span> <span class="nt">the</span> <span class="nt">cache</span> <span class="nt">is</span> <span class="nt">stashed</span>
 
         <span class="err">#</span> <span class="nt">defines</span> <span class="nt">cache</span> <span class="nt">path</span> <span class="nt">heirarchy</span> <span class="o">(</span><span class="nt">yaani</span> <span class="nt">num</span> <span class="nt">directory</span> <span class="nt">levels</span> <span class="nt">in</span> <span class="nt">cache</span><span class="o">)</span>
-        <span class="nt">levels</span><span class="o">=</span><span class="nt">1</span><span class="nd">:2</span>
+        <span class="nt">levels</span><span class="o">=</span><span class="nt">1</span><span class="p">:</span><span class="nd">2</span>
 
         <span class="err">#</span> <span class="nt">defines</span> <span class="nt">name</span> <span class="nt">and</span> <span class="nt">size</span> <span class="nt">of</span> <span class="nt">zone</span> <span class="nt">where</span> <span class="nt">all</span> <span class="nt">cache</span> <span class="nt">keys</span> <span class="nt">and</span> <span class="nt">cache</span> <span class="nt">metadata</span> <span class="nt">are</span> <span class="nt">stashed</span><span class="o">.</span>
         <span class="err">#</span> <span class="nt">Servers</span> <span class="nt">as</span> <span class="nt">a</span> <span class="nt">lookup</span> <span class="nt">for</span> <span class="nt">cached</span> <span class="nt">data</span>
-        <span class="nt">keys_zone</span><span class="o">=</span><span class="nt">repository_cache</span><span class="nd">:50m</span>
+        <span class="nt">keys_zone</span><span class="o">=</span><span class="nt">repository_cache</span><span class="p">:</span><span class="nd">50m</span>
 
         <span class="err">#</span> <span class="nt">The</span> <span class="nt">cached</span> <span class="nt">data</span> <span class="nt">access</span> <span class="nt">timeout</span><span class="o">.</span> <span class="nt">Pkgs</span> <span class="nt">get</span> <span class="nt">nuked</span> <span class="nt">if</span> <span class="nt">no</span> <span class="nt">access</span> <span class="nt">in</span> <span class="nt">14</span> <span class="nt">days</span><span class="o">.</span>
         <span class="nt">inactive</span><span class="o">=</span><span class="nt">14d</span>
@@ -151,20 +142,20 @@ repos defined there in. Read on...this section continues inside the conf file as
 <span class="err">#</span> <span class="nt">Our</span> <span class="nt">no-name</span> <span class="nt">server</span> <span class="nt">block</span>
 <span class="nt">server</span> <span class="p">{</span>
 
-  <span class="err">#</span> <span class="n">Keep</span> <span class="n">our</span> <span class="n">eyes</span> <span class="n">peeled</span> <span class="n">on</span> <span class="n">port</span> <span class="m">80</span>
-  <span class="n">listen</span> <span class="m">80</span><span class="p">;</span>
+  <span class="err">#</span> <span class="err">Keep</span> <span class="err">our</span> <span class="err">eyes</span> <span class="err">peeled</span> <span class="err">on</span> <span class="err">port</span> <span class="err">80</span>
+  <span class="err">listen</span> <span class="err">80</span><span class="p">;</span>
 
-  <span class="err">#</span> <span class="n">Location</span> <span class="n">directive</span> <span class="n">for</span> <span class="n">the</span> <span class="o">/</span><span class="n">ubuntu</span> <span class="n">path</span>
-  <span class="n">location</span> <span class="o">/</span><span class="n">ubuntu</span> <span class="err">{</span>
-    <span class="err">#</span> <span class="n">our</span> <span class="n">cache</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">root</span>
-    <span class="n">root</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">repo_mirror</span><span class="o">/</span><span class="n">index_data</span><span class="p">;</span>
+  <span class="err">#</span> <span class="err">Location</span> <span class="err">directive</span> <span class="err">for</span> <span class="err">the</span> <span class="err">/ubuntu</span> <span class="err">path</span>
+  <span class="err">location</span> <span class="err">/ubuntu</span> <span class="err">{</span>
+    <span class="err">#</span> <span class="err">our</span> <span class="err">cache&#39;s</span> <span class="err">root</span>
+    <span class="err">root</span> <span class="err">/var/repo_mirror/index_data</span><span class="p">;</span>
 
-    <span class="err">#</span> <span class="n">look</span> <span class="n">for</span> <span class="n">packages</span> <span class="n">in</span> <span class="n">the</span> <span class="n">following</span> <span class="n">order</span>
-    <span class="n">try_files</span> <span class="err">$</span><span class="n">uri</span> <span class="o">@</span><span class="n">ubuntu</span><span class="p">;</span>
+    <span class="err">#</span> <span class="err">look</span> <span class="err">for</span> <span class="err">packages</span> <span class="err">in</span> <span class="err">the</span> <span class="err">following</span> <span class="err">order</span>
+    <span class="err">try_files</span> <span class="err">$uri</span> <span class="err">@ubuntu</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="err">#</span> <span class="nt">Location</span> <span class="nt">directive</span> <span class="nt">for</span> <span class="nt">the</span> <span class="nt">named</span> <span class="nt">location</span> <span class="nt">defined</span> <span class="nt">above</span>
-  <span class="nt">location</span> <span class="k">@ubuntu</span> <span class="p">{</span>
+  <span class="nt">location</span> <span class="p">@</span><span class="k">ubuntu</span> <span class="p">{</span>
 
     <span class="err">#</span> <span class="nt">map</span> <span class="nt">this</span> <span class="nt">to</span> <span class="nt">the</span> <span class="nt">upstream</span> <span class="nt">definition</span> <span class="nt">above</span>
     <span class="nt">proxy_pass</span> <span class="nt">http</span><span class="o">://</span><span class="nt">ubuntu</span><span class="o">;</span>
@@ -189,7 +180,7 @@ repos defined there in. Read on...this section continues inside the conf file as
 to copy paste it into <code>/etc/nginx/sites-available/</code>.</p>
 <p>One enhancement that can be made to all this is to configure a reliable storage device for
 cache store.</p>
-<h3 id="the-client-side">The client side</h3>
+<h3>The client side</h3>
 <p>It goes without saying that repo related requests have to somehow be routed to the
 proxy in order for all this to work.</p>
 <p>One way is to modify the client's <code>/etc/apt/sources.list</code> or <code>/etc/yum.repos.d/CentOS-*.repo</code>
@@ -201,7 +192,7 @@ option is in grey area territory, we'll go with the former and modify the
 repo configs. Read on to the next section for that (because the writer wrote
 that before the one you reading now and he cannot be bothered to repeat
 himself or make mods to the article at this point).</p>
-<h1 id="bonus-vagrant-ansible-deploy-material">Bonus vagrant-ansible deploy material</h1>
+<h1>Bonus vagrant-ansible deploy material</h1>
 <p>Just in case you'd like to test all this, or would like some CM to deploy the same
 IRL, there is a rudimentary
 <a href="https://github.com/mrmoje/repo_cache_plays_staring_nginx">"demo setup git repo"</a>
@@ -238,7 +229,7 @@ while you do that.</p>
 file to see hodge-podge of provisioning methods and the
 <a href="https://www.gnu.org/software/sed/manual/sed.html">sedding</a> that swaps the vanilla repos
 for our example proxy.</p>
-<h1 id="outro">Outro</h1>
+<h1>Outro</h1>
 <p>We put a <a href="https://github.com/kili/playbooks/blob/master/playbooks/repository_cache.yaml">variant of this proxy-cache</a>
 method to good use at a cloud compute startup I used to work for and it worked
 out well for us and our tenants.</p>
@@ -250,7 +241,7 @@ been taken up by a multi repo mirror.</p>
 take longer for the first host/request to get sorted which may be bad for
 the installing party depending on how pressed for time they are, but then again
 with life, every now and then, somebody has to take one for the team. C'est la Vie!</p>
-<h3 id="resources-refs-google-juice-">Resources, Refs &amp; google juice:-</h3>
+<h3>Resources, Refs &amp; google juice:-</h3>
 <ul>
 <li><a href="(https://trafficserver.readthedocs.org/en/5.3.x/admin/reverse-proxy-http-redirects.en.html)">Trafficserver dox on reverse proxy</a></li>
 <li><a href="(http://nginx.org/en/docs/http/ngx_http_proxy_module.html)">NGINX proxy module documentation</a></li>
@@ -299,8 +290,8 @@ with life, every now and then, somebody has to take one for the team. C'est la V
     </div>
   </div>
 </footer> <!-- /.footer -->
-  <script src="http://tdt.rocks/theme/js/jquery.min.js"></script>
-  <script src="http://tdt.rocks/theme/js/bootstrap.min.js"></script>
+  <script src="./theme/js/jquery.min.js"></script>
+  <script src="./theme/js/bootstrap.min.js"></script>
 </body> <!-- 42 -->
 
 </html>

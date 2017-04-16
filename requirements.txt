@@ -1,3 +1,0 @@
-pelican>=3.3
-markdown>=2.3.1
-ghp-import

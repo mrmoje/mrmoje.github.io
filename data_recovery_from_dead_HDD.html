@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="./data_recovery_from_dead_HDD.html" />
+
+    <title>  TDT &mdash; Data recovery from a HDD killed by power surge
+</title>
+
+
+
+      <link type="application/atom+xml" rel="alternate" href="/feed/atom.xml"  title="TDT Atom Feed">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+    <link rel="stylesheet" href="./theme/css/style.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <meta name="author" content="James Nzomo">
+    <meta name="description" content="A touching story about how non-backed up data was rescued from oblivion and in the nick of time.">
+  <meta name="tags" contents="data recovery, electronics, ">
+</head>
+
+<body>
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <!-- <h3 class="header-text">Thoughts & Deeds on Tech</h3> -->
+      <ul class="header-menu list-inline text-right">
+        <li><a class="nodec" href="./categories.html">Categories</a></li>
+        <li class="muted">|</li>
+
+        <li><a class="nodec social-link icon-github" href="https://github.com/mrmoje" target="_blank"></a></li>
+        <li><a class="nodec social-link icon-twitter" href="https://twitter.com/mrmoje" target="_blank"></a></li>
+        <li><a class="nodec social-link icon-rss" href="http://tdt.rocks/feed/atom.xml" target="_blank"></a></li>
+        <li><a class="nodec social-link icon-stackoverflow" href="https://stackoverflow.com/users/1002644/moje" target="_blank"></a></li>
+      </ul>
+      <h1 class="header-name">
+        <a id="sitename" class="nodec" href=".">TDT</a>
+      </h1>
+    </div>
+  </div>
+
+</header> <!-- /.header -->  <div class="container">
+  <div class="post full-post">
+    <h1 class="post-title">
+      <a href="/data_recovery_from_dead_HDD.html" title="Permalink to Data recovery from a HDD killed by power surge">Data recovery from a HDD killed by power surge</a>
+    </h1>
+    <hr>
+    <ul class="list-inline">
+      <li class="post-date">
+        <a class="text-muted" href="/data_recovery_from_dead_HDD.html" title="2017-04-16T03:25:00+03:00">April 16, 2017</a>
+      </li>
+      <li class="muted">&middot;</li>
+      <li class="post-category">
+        <a href="./category/data-recovery.html">Data Recovery</a>
+      </li>
+        <li class="muted">&middot;</li>
+        <li>
+            <a href="/tag/data recovery.html">data recovery</a>,             <a href="/tag/electronics.html">electronics</a>        </li>
+        <li class="muted">&middot;</li>
+        <li>
+          <address class="post-author">
+            By <a href="./author/james-nzomo.html">James Nzomo</a>
+          </address>
+        </li>
+    </ul>
+    <div class="post-content">
+      <h1>Intro</h1>
+<p>Circa ten years ago, before cloud was practically feasible this side of the
+sahara, a CPU was assembled for some <a href="https://en.wikipedia.org/wiki/Small_and_medium-sized_enterprises">SME</a> with off the shelf parts featuring,
+three 500G hard drives:- 2 in raid 1 config, the last with OS ("the OS disk")
+to ran custom written software which stashed its inventory and transactions
+data into a MySQL DB.</p>
+<p>Initially, the db data dirctory was stored on the mirrored raid pair but circa 4
+years back, the OS got reinstalled and the dummy that did that (yours truly)
+forgot to set mysql's datadir on the mirrored disks.</p>
+<h1>Murphy's law fulfilled</h1>
+<p>The "OS disk" went kaput!</p>
+<h1>Finagle's law fulfilled</h1>
+<p>The "OS disk" went kaput 20 days before the owners were to file TAX returns.
+They needed the past year's data ASAP.</p>
+<p>On inspection, I found that the OS disk was killed by a surge.
+The PCB had a charred <a href="http://www.users.on.net/~fzabkar/HDD/TVS_diode_FAQ.html">TVS diode</a> and what appear to be a charred
+inductors on the power supply side:-</p>
+<p><img alt="THE DEAD PCB" src="img/data_recovery_from_dead_hdd/pwnt_pcb.jpg" title="PWNT PCB">
+<strong><em>fig.1 Top left, burnt TVS diode, top right charred inductors. This clearly wasn't
+going to power on.</em></strong></p>
+<p>Somehow, after rummaging around, I managed to get a similar motherboard off a
+similar hard drive down to the model number but differing on Firmware and Board
+revision.(100535704 REV C and REV D for the donor and dead pcb respectively)</p>
+<p><img alt="DONOR &amp; THE DEAD PCB" src="img/data_recovery_from_dead_hdd/donor_n_pwnt_pcb.jpg" title="DONOR &amp; PWNT PCB">
+<strong><em>fig.2 Left:- donor pcb, right:- dead pcb.</em></strong></p>
+<h1>Recovery attempt numero uno</h1>
+<p>So with the HDD motherboard swapped, I plugged it in, turned power on and then:-
+black screen + blinking underscore. POST was struggling to figure out what
+the hell had been pluged into SATA1. There was also a repeated motif of clunking
+noise from the now powering on but malfunctioning hard drive.
+Multiple retries resulted in a hopeless feels,...but surrender wasn't an option.</p>
+<p>Before throwing in the towel and taking it to data recovery specialists (and
+explaining why or who would pay circa 100,000 KES {1K USD at the time of this
+writing}), I thought it would be WISE to spend afew hours in
+data recovery RTFM.</p>
+<h1>Calibrative adaptive information</h1>
+<p>As far as recovery goes, Hard Drives fall into 3 categories:-</p>
+<ol>
+<li>Those recoverable from simple PCB swap,</li>
+<li>Those that need a BIOS transplanted,</li>
+<li>Those that have no separate transplantable BIOS. (bios info resides in MCU)</li>
+</ol>
+<p>There is alot of literature on BIOSes and modern HDDs (google it or see google
+juice/references section at bottom) but the long and short of it is the HDD BIOS
+stores info that the hard drive's micro controller requires to read the
+<a href="http://www.datarecovery.net/articles/hard-drive-system-area.aspx">System Area which inturn contains calibration and adaptive info unique to the
+mechanics of the drive</a>. This includes manufacturing defect
+workarounds and servo specific params. This info is determined and set at the
+factory and is probably unique to virtually every modern hard drive that
+features a bios.</p>
+<p>Without this, you may as well recycle the drive into a paperweight and make
+frizbees out of the platters.</p>
+<p>Back to the three categories. By way of elimination, we already know category 1
+is not applicable. The clunking noise was the MCU's quest for access to system
+area based on inaccurate BIOS data. Some also say this could have resulted in
+a corrupt System Area and irrecoverable data.</p>
+<p>If it was to fall under category 3 (no transplantable BIOS chip data) there
+wasn't much I was going to be able to DIY and I would have to trod the 1K USD
+path.</p>
+<p>Thankfully that wasn't the case as (after much RTFM) I was able to
+locate an 8-pin serial flash memory chip on the dead PCB.</p>
+<h1>Soldering Time!</h1>
+<p>So now, a sane trouble-free future lay in that tiny 8-pin ROM chip. The recommended
+way would be to transplant that chip to the donor board but that was not without
+risk. If during transplant, it gets more heat than the datasheet specs as its max
+or if a pin broke, then everything will have come to nothing!</p>
+<p>So I decided to first focus on resurrecting the dead PCB and its less critical
+charred components then transplant the BIOS if that was to come to nought.</p>
+<p>First up, the TVS diode or (Transient Voltage Suppression diode). As the name
+suggests, its purpose is to protect circuitry from voltage spikes and probably
+incurring damage in the process.</p>
+<p>In our case, this TVS gave up the ghost so that the other components may live to
+facilitate recovery another day. Thank you dear diode, I will never forget this
+sacrifice.
+Anyhow, the solution here was to desolder that as it was shorted and diverting
+power supply from the rest of the components.
+<img alt="DONOR &amp; THE DEAD PCB" src="img/data_recovery_from_dead_hdd/tvs_fix.png" title="TVS FIX">
+<strong><em>fig.3 The ressurecting PCB, Left:- Pre TVS diode, Right:- Post TVS diode. (notice the BIOS chip top left)</em></strong></p>
+<p>Then there was the charred inductors on the power supply side. There were
+suggestions on some forums that they could be simply bridged over Which sort
+of made sense and so I went ahead and purged the charred few and linked the
+respective PCB pads with a dab of solder so that current may flow into the
+board and power the rig.
+<img alt="DONOR &amp; THE DEAD PCB" src="img/data_recovery_from_dead_hdd/inductor_fix.png" title="IND FIX">
+<strong><em>fig.4 The ressurecting PCB Left:- burnt inductors, Right:- One purged and briged.</em></strong></p>
+<p>Lastly, I checked that both the 12V and 5V rails weren't shorted to ground
+and IMHO, the drive was good to go for power up!</p>
+<h1>RESULT! Recovery WIN!</h1>
+<p>The disk was reunited with the soldered up board and on power-on ALAS! -
+it spun up like it was new and the motherboard BIOS even picked it up:-</p>
+<p><img alt="BIOS RECOGNITION WIN" src="img/data_recovery_from_dead_hdd/bios_recognition_win.jpg" title="BIOS RECOGNITION WIN">
+<strong><em>fig 5. WIN!. If you went thru the same thing, this image would give you warm fuzzy feeling</em></strong></p>
+<p>But I wasn't out of the woods yet. There was the possibility that there could
+have been further damage and previous recovery methods could have corrupted
+the drive.</p>
+<p>Thus In quick succession:-</p>
+<ul>
+<li>I rebooted into usb live linux key</li>
+<li>rsync-ed /var/lib/mysql out of that failing sucker with the quickness</li>
+<li>and verified that the that a mysql installation could make sense of the rescued datadir
+(which it was)</li>
+</ul>
+<p>And RESULT! Disaster had been averted!</p>
+<h3>The end!</h3>
+<h1>Outro</h1>
+<p>Always back up damnit!</p>
+<h3>Resources, Refs &amp; google juice:-</h3>
+<ul>
+<li><a href="http://hddscan.com/doc/HDD_Tracks_and_Zones.html">About HDD tracks and zones</a></li>
+<li><a href="http://www.datarecovery.net/articles/hard-drive-system-area.aspx">An article about the System Area</a></li>
+<li><a href="http://www.hddzone.com/hdd_pcb_bios_rom_chip_nvram.html">Something about HDD BIOSes and recovery</a></li>
+<li><a href="http://eadatahandlers.co.ke/">When all else fails</a></li>
+<li><a href="https://www.youtube.com/watch?v=Yn2eL4o-6Eo">A vidya on recovery drive categories, from one of the experts</a></li>
+<li><a href="http://www.users.on.net/~fzabkar/HDD/TVS_diode_FAQ.html">Some articel on TVS Diodes</a></li>
+</ul>
+    </div>
+  </div>
+  <hr class="separator">
+  <div>
+  <div id="disqus_thread">
+    <script>
+      var disqus_shortname = 'tdtrocks';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] ||
+         document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript=tdtrocks">
+        comments powered by Disqus.
+      </a>
+    </noscript>
+    <a href="https://disqus.com" class="dsq-brlink">
+      blog comments powered by <span class="logo-disqus">Disqus</span>
+    </a>
+  </div>
+  </div>
+  </div>
+<footer class="footer">
+  <div class="container">
+    <p class="text-center">
+      &copy;Twenny Fifteen - James Nzomo, <a href="" target="_blank"></a> unless otherwise noted.
+    </p>
+    <div class="text-center">
+      Generated by <a href="http://getpelican.com" target="_blank">Pelican</a>
+      with a <a href="http://github.com/mrmoje/pelican-alchemy" target="_blank">copy-pasta</a>
+      of <a href="https://nairobilug.or.ke" target="_blank" >NairobiLUG's</a>
+      <a href="http://github.com/nairobilug/pelican-alchemy" target="_blank">alchemy</a> theme, <br/>
+      which inturn is a copy-pasta of Porter's <a href="https://github.com/porterjamesj/crowsfoot" target="_blank">crowsfoot</a> theme. <br/>
+      --- end of <a href="//tdt.rocks/pages/glossary#google-juice">google juice</a> ---.
+    </div>
+  </div>
+</footer> <!-- /.footer -->
+  <script src="./theme/js/jquery.min.js"></script>
+  <script src="./theme/js/bootstrap.min.js"></script>
+</body> <!-- 42 -->
+
+</html>

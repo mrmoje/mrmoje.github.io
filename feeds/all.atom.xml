@@ -1,5 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>TDT</title><link href="http://tdt.rocks/" rel="alternate"></link><link href="http://tdt.rocks/feeds/all.atom.xml" rel="self"></link><id>http://tdt.rocks/</id><updated>2015-12-18T03:25:00+03:00</updated><entry><title>Linux network interface naming</title><link href="http://tdt.rocks/linux_network_interface_naming.html" rel="alternate"></link><updated>2015-12-18T03:25:00+03:00</updated><author><name>James Nzomo</name></author><id>tag:tdt.rocks,2015-12-18:linux_network_interface_naming.html</id><summary type="html">&lt;h1 id="intro"&gt;Intro&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>TDT</title><link href="http://tdt.rocks/" rel="alternate"></link><link href="http://tdt.rocks/feeds/all.atom.xml" rel="self"></link><id>http://tdt.rocks/</id><updated>2017-04-16T03:25:00+03:00</updated><entry><title>Data recovery from a HDD killed by power surge</title><link href="http://tdt.rocks/data_recovery_from_dead_HDD.html" rel="alternate"></link><published>2017-04-16T03:25:00+03:00</published><updated>2017-04-16T03:25:00+03:00</updated><author><name>James Nzomo</name></author><id>tag:tdt.rocks,2017-04-16:/data_recovery_from_dead_HDD.html</id><summary type="html">&lt;p&gt;A touching story about how non-backed up data was rescued from oblivion and in the nick of time.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Intro&lt;/h1&gt;
+&lt;p&gt;Circa ten years ago, before cloud was practically feasible this side of the
+sahara, a CPU was assembled for some &lt;a href="https://en.wikipedia.org/wiki/Small_and_medium-sized_enterprises"&gt;SME&lt;/a&gt; with off the shelf parts featuring,
+three 500G hard drives:- 2 in raid 1 config, the last with OS ("the OS disk")
+to ran custom written software which stashed its inventory and transactions
+data into a MySQL DB.&lt;/p&gt;
+&lt;p&gt;Initially, the db data dirctory was stored on the mirrored raid pair but circa 4
+years back, the OS got reinstalled and the dummy that did that (yours truly)
+forgot to set mysql's datadir on the mirrored disks.&lt;/p&gt;
+&lt;h1&gt;Murphy's law fulfilled&lt;/h1&gt;
+&lt;p&gt;The "OS disk" went kaput!&lt;/p&gt;
+&lt;h1&gt;Finagle's law fulfilled&lt;/h1&gt;
+&lt;p&gt;The "OS disk" went kaput 20 days before the owners were to file TAX returns.
+They needed the past year's data ASAP.&lt;/p&gt;
+&lt;p&gt;On inspection, I found that the OS disk was killed by a surge.
+The PCB had a charred &lt;a href="http://www.users.on.net/~fzabkar/HDD/TVS_diode_FAQ.html"&gt;TVS diode&lt;/a&gt; and what appear to be a charred
+inductors on the power supply side:-&lt;/p&gt;
+&lt;p&gt;&lt;img alt="THE DEAD PCB" src="img/data_recovery_from_dead_hdd/pwnt_pcb.jpg" title="PWNT PCB"&gt;
+&lt;strong&gt;&lt;em&gt;fig.1 Top left, burnt TVS diode, top right charred inductors. This clearly wasn't
+going to power on.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Somehow, after rummaging around, I managed to get a similar motherboard off a
+similar hard drive down to the model number but differing on Firmware and Board
+revision.(100535704 REV C and REV D for the donor and dead pcb respectively)&lt;/p&gt;
+&lt;p&gt;&lt;img alt="DONOR &amp;amp; THE DEAD PCB" src="img/data_recovery_from_dead_hdd/donor_n_pwnt_pcb.jpg" title="DONOR &amp;amp; PWNT PCB"&gt;
+&lt;strong&gt;&lt;em&gt;fig.2 Left:- donor pcb, right:- dead pcb.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h1&gt;Recovery attempt numero uno&lt;/h1&gt;
+&lt;p&gt;So with the HDD motherboard swapped, I plugged it in, turned power on and then:-
+black screen + blinking underscore. POST was struggling to figure out what
+the hell had been pluged into SATA1. There was also a repeated motif of clunking
+noise from the now powering on but malfunctioning hard drive.
+Multiple retries resulted in a hopeless feels,...but surrender wasn't an option.&lt;/p&gt;
+&lt;p&gt;Before throwing in the towel and taking it to data recovery specialists (and
+explaining why or who would pay circa 100,000 KES {1K USD at the time of this
+writing}), I thought it would be WISE to spend afew hours in
+data recovery RTFM.&lt;/p&gt;
+&lt;h1&gt;Calibrative adaptive information&lt;/h1&gt;
+&lt;p&gt;As far as recovery goes, Hard Drives fall into 3 categories:-&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Those recoverable from simple PCB swap,&lt;/li&gt;
+&lt;li&gt;Those that need a BIOS transplanted,&lt;/li&gt;
+&lt;li&gt;Those that have no separate transplantable BIOS. (bios info resides in MCU)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;There is alot of literature on BIOSes and modern HDDs (google it or see google
+juice/references section at bottom) but the long and short of it is the HDD BIOS
+stores info that the hard drive's micro controller requires to read the
+&lt;a href="http://www.datarecovery.net/articles/hard-drive-system-area.aspx"&gt;System Area which inturn contains calibration and adaptive info unique to the
+mechanics of the drive&lt;/a&gt;. This includes manufacturing defect
+workarounds and servo specific params. This info is determined and set at the
+factory and is probably unique to virtually every modern hard drive that
+features a bios.&lt;/p&gt;
+&lt;p&gt;Without this, you may as well recycle the drive into a paperweight and make
+frizbees out of the platters.&lt;/p&gt;
+&lt;p&gt;Back to the three categories. By way of elimination, we already know category 1
+is not applicable. The clunking noise was the MCU's quest for access to system
+area based on inaccurate BIOS data. Some also say this could have resulted in
+a corrupt System Area and irrecoverable data.&lt;/p&gt;
+&lt;p&gt;If it was to fall under category 3 (no transplantable BIOS chip data) there
+wasn't much I was going to be able to DIY and I would have to trod the 1K USD
+path.&lt;/p&gt;
+&lt;p&gt;Thankfully that wasn't the case as (after much RTFM) I was able to
+locate an 8-pin serial flash memory chip on the dead PCB.&lt;/p&gt;
+&lt;h1&gt;Soldering Time!&lt;/h1&gt;
+&lt;p&gt;So now, a sane trouble-free future lay in that tiny 8-pin ROM chip. The recommended
+way would be to transplant that chip to the donor board but that was not without
+risk. If during transplant, it gets more heat than the datasheet specs as its max
+or if a pin broke, then everything will have come to nothing!&lt;/p&gt;
+&lt;p&gt;So I decided to first focus on resurrecting the dead PCB and its less critical
+charred components then transplant the BIOS if that was to come to nought.&lt;/p&gt;
+&lt;p&gt;First up, the TVS diode or (Transient Voltage Suppression diode). As the name
+suggests, its purpose is to protect circuitry from voltage spikes and probably
+incurring damage in the process.&lt;/p&gt;
+&lt;p&gt;In our case, this TVS gave up the ghost so that the other components may live to
+facilitate recovery another day. Thank you dear diode, I will never forget this
+sacrifice.
+Anyhow, the solution here was to desolder that as it was shorted and diverting
+power supply from the rest of the components.
+&lt;img alt="DONOR &amp;amp; THE DEAD PCB" src="img/data_recovery_from_dead_hdd/tvs_fix.png" title="TVS FIX"&gt;
+&lt;strong&gt;&lt;em&gt;fig.3 The ressurecting PCB, Left:- Pre TVS diode, Right:- Post TVS diode. (notice the BIOS chip top left)&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Then there was the charred inductors on the power supply side. There were
+suggestions on some forums that they could be simply bridged over Which sort
+of made sense and so I went ahead and purged the charred few and linked the
+respective PCB pads with a dab of solder so that current may flow into the
+board and power the rig.
+&lt;img alt="DONOR &amp;amp; THE DEAD PCB" src="img/data_recovery_from_dead_hdd/inductor_fix.png" title="IND FIX"&gt;
+&lt;strong&gt;&lt;em&gt;fig.4 The ressurecting PCB Left:- burnt inductors, Right:- One purged and briged.&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Lastly, I checked that both the 12V and 5V rails weren't shorted to ground
+and IMHO, the drive was good to go for power up!&lt;/p&gt;
+&lt;h1&gt;RESULT! Recovery WIN!&lt;/h1&gt;
+&lt;p&gt;The disk was reunited with the soldered up board and on power-on ALAS! -
+it spun up like it was new and the motherboard BIOS even picked it up:-&lt;/p&gt;
+&lt;p&gt;&lt;img alt="BIOS RECOGNITION WIN" src="img/data_recovery_from_dead_hdd/bios_recognition_win.jpg" title="BIOS RECOGNITION WIN"&gt;
+&lt;strong&gt;&lt;em&gt;fig 5. WIN!. If you went thru the same thing, this image would give you warm fuzzy feeling&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;But I wasn't out of the woods yet. There was the possibility that there could
+have been further damage and previous recovery methods could have corrupted
+the drive.&lt;/p&gt;
+&lt;p&gt;Thus In quick succession:-&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I rebooted into usb live linux key&lt;/li&gt;
+&lt;li&gt;rsync-ed /var/lib/mysql out of that failing sucker with the quickness&lt;/li&gt;
+&lt;li&gt;and verified that the that a mysql installation could make sense of the rescued datadir
+(which it was)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And RESULT! Disaster had been averted!&lt;/p&gt;
+&lt;h3&gt;The end!&lt;/h3&gt;
+&lt;h1&gt;Outro&lt;/h1&gt;
+&lt;p&gt;Always back up damnit!&lt;/p&gt;
+&lt;h3&gt;Resources, Refs &amp;amp; google juice:-&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://hddscan.com/doc/HDD_Tracks_and_Zones.html"&gt;About HDD tracks and zones&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.datarecovery.net/articles/hard-drive-system-area.aspx"&gt;An article about the System Area&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.hddzone.com/hdd_pcb_bios_rom_chip_nvram.html"&gt;Something about HDD BIOSes and recovery&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://eadatahandlers.co.ke/"&gt;When all else fails&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=Yn2eL4o-6Eo"&gt;A vidya on recovery drive categories, from one of the experts&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://www.users.on.net/~fzabkar/HDD/TVS_diode_FAQ.html"&gt;Some articel on TVS Diodes&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="data recovery"></category><category term="electronics"></category></entry><entry><title>Linux network interface naming</title><link href="http://tdt.rocks/linux_network_interface_naming.html" rel="alternate"></link><published>2015-12-18T03:25:00+03:00</published><updated>2015-12-18T03:25:00+03:00</updated><author><name>James Nzomo</name></author><id>tag:tdt.rocks,2015-12-18:/linux_network_interface_naming.html</id><summary type="html">&lt;p&gt;About how net-if's get their names - from kernel only naming to biosdevname and systemd-udev schemes.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Intro&lt;/h1&gt;
 &lt;p&gt;If you are running a recent ubuntu release ( &amp;gt; 15.XX ), you've probably noticed
 that your net interfaces have been "rebranded". Maybe this noticing came in the
 form of your sripts being broken....your &lt;code&gt;/etc/network/if-up.d/XXX&lt;/code&gt; script or
@@ -8,8 +122,8 @@ scripts (bad practice which im guilty of). It worked previously on your
 old-release, then you had to upgrade...but I digress.&lt;/p&gt;
 &lt;p&gt;In this post, I'll try talking about how net devices get their names, the schemes
 employed and the tech behind the schemes.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h1 id="the-classic-naming-scheme-eth0-n"&gt;The classic naming scheme - &lt;code&gt;eth&amp;lt;0-n&amp;gt;&lt;/code&gt;&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h1&gt;The classic naming scheme - &lt;code&gt;eth&amp;lt;0-n&amp;gt;&lt;/code&gt;&lt;/h1&gt;
 &lt;p&gt;Not so long ago, without any devops intervention, interface names were decided
 solely by the Kernel based on the order in which they are enumerated which in
 turn is based on the order in which their modules/drivers are loaded and then,
@@ -29,8 +143,8 @@ upgrades or sometimes even reboots.&lt;/p&gt;
 and udev rules&lt;/a&gt; but we live in modern times and
 techies should not be bothered to jump through those hoops just to sort out
 something that should be automagic.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h1 id="biosdevname-emport-pslotpport"&gt;biosdevname - &lt;code&gt;em&amp;lt;port&amp;gt;&lt;/code&gt;, &lt;code&gt;p&amp;lt;slot&amp;gt;p&amp;lt;port&amp;gt;&lt;/code&gt;&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h1&gt;biosdevname - &lt;code&gt;em&amp;lt;port&amp;gt;&lt;/code&gt;, &lt;code&gt;p&amp;lt;slot&amp;gt;p&amp;lt;port&amp;gt;&lt;/code&gt;&lt;/h1&gt;
 &lt;p&gt;One of the efforts at bringing order out of chaos is dell's &lt;a href="http://linux.dell.com/biosdevname/"&gt;biosdevname&lt;/a&gt;
 project which according to the project description is &lt;q&gt;a udev helper for naming
 devices per BIOS names.&lt;/q&gt; This helper-utility determines device names based on
@@ -57,8 +171,8 @@ you should get something along the lines of &lt;code&gt;em1&lt;/code&gt; or &lt;
 and what's slotted in...but it has it's limitations, one of them being that it doesn't
 cater for a wider range of interface types/devices. It refused to name my usb
 ethernet dongle.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h1 id="systemd-udev-enoindex-ensslotdport"&gt;systemd udev - &lt;code&gt;eno&amp;lt;index&amp;gt;&lt;/code&gt;, &lt;code&gt;ens&amp;lt;slot&amp;gt;d&amp;lt;port&amp;gt;&lt;/code&gt;&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h1&gt;systemd udev - &lt;code&gt;eno&amp;lt;index&amp;gt;&lt;/code&gt;, &lt;code&gt;ens&amp;lt;slot&amp;gt;d&amp;lt;port&amp;gt;&lt;/code&gt;&lt;/h1&gt;
 &lt;p&gt;Starting version 197, shortly after udev was absorbed into systemd source
 tree, native predictable naming was added to the mix.&lt;/p&gt;
 &lt;p&gt;According to &lt;a href="http://wiki.freedesktop.org/www/Software/systemd/PredictableNetworkInterfaceNames/"&gt;the systemd wiki on the topic&lt;/a&gt;, and the
@@ -66,7 +180,7 @@ tree, native predictable naming was added to the mix.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;firmware/bios-provided for on-board devices - &lt;code&gt;&amp;lt;type&amp;gt;o&amp;lt;index&amp;gt;[d&amp;lt;dev_port&amp;gt;]&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;firmware/bios-provided for pci-express hotplug slot - &lt;code&gt;&amp;lt;type&amp;gt;s&amp;lt;slot&amp;gt;[f&amp;lt;function&amp;gt;][d&amp;lt;dev_port&amp;gt;]&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;physical/geographical location for PCI devices -&lt;br /&gt;
+&lt;li&gt;physical/geographical location for PCI devices -&lt;br&gt;
 &lt;code&gt;&amp;lt;type&amp;gt;[P&amp;lt;domain&amp;gt;]p&amp;lt;bus&amp;gt;s&amp;lt;slot&amp;gt;[f&amp;lt;function&amp;gt;][[d&amp;lt;dev_port&amp;gt;]|[u&amp;lt;port&amp;gt;][..][c&amp;lt;config&amp;gt;][i&amp;lt;interface&amp;gt;]]&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;the devices's MAC address - &lt;code&gt;&amp;lt;type&amp;gt;x&amp;lt;MAC&amp;gt;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -86,10 +200,10 @@ ethernet interface provided by a device on bus #8 slot #0 with only 1 port and
 location/path scheme we can tell that it's an ethernet interface provided by a
 usb device connected to a usb controller on PCI bus #0, device #29, with function #7
 plugged into usb port #1.&lt;/p&gt;
-&lt;h3 id="systemd-udev-naming-policy"&gt;systemd-udev Naming Policy&lt;/h3&gt;
+&lt;h3&gt;systemd-udev Naming Policy&lt;/h3&gt;
 &lt;p&gt;Net devices may have more than one name generated for them which you can
 view by querying the udev database (filtering the results):-  &lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;udevadm info -q property -p /sys/class/net/ens33 &lt;span class="p"&gt;|&lt;/span&gt; grep ID_NET_NAME
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;udevadm info -q property -p /sys/class/net/ens33 &lt;span class="p"&gt;|&lt;/span&gt; grep ID_NET_NAME
 &lt;span class="nv"&gt;ID_NET_NAME_MAC&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;enx112233445566
 &lt;span class="nv"&gt;ID_NET_NAME_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;enp2s0
 &lt;span class="nv"&gt;ID_NET_NAME_SLOT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ens33
@@ -100,13 +214,13 @@ view by querying the udev database (filtering the results):-  &lt;/p&gt;
 The choice of name is determined by a list if policies defined for &lt;code&gt;NamePolicy&lt;/code&gt;
 in the respective link config file (see &lt;code&gt;man systemd.link&lt;/code&gt;). To find out what
 link file is in use, query udevadm like so:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;udevadm info -q property -p /sys/class/net/ens33 &lt;span class="p"&gt;|&lt;/span&gt; grep LINK_FILE
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;udevadm info -q property -p /sys/class/net/ens33 &lt;span class="p"&gt;|&lt;/span&gt; grep LINK_FILE
 &lt;span class="nv"&gt;ID_NET_LINK_FILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/lib/systemd/network/99-default.link
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;I get 99-default.link, contents of which are:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;cat /lib/systemd/network/99-default.link
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat /lib/systemd/network/99-default.link
 &lt;span class="o"&gt;[&lt;/span&gt;Link&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;span class="nv"&gt;NamePolicy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;kernel database onboard slot path
 &lt;span class="nv"&gt;MACAddressPolicy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;persistent
@@ -117,13 +231,13 @@ link file is in use, query udevadm like so:-&lt;/p&gt;
 in which they appear and the first successful one is used to set the device name.
 In this case with ens33 being chosen, &lt;code&gt;kernel&lt;/code&gt;, &lt;code&gt;database&lt;/code&gt; and &lt;code&gt;onboard&lt;/code&gt; failed,
 &lt;code&gt;slot&lt;/code&gt; passed and &lt;code&gt;path&lt;/code&gt; wasn't considered.&lt;/p&gt;
-&lt;h1 id="outro"&gt;Outro&lt;/h1&gt;
+&lt;h1&gt;Outro&lt;/h1&gt;
 &lt;p&gt;systemd-udev is now standard on most big name distros (ubuntu included) and has
 naturally superseded biosdevname where it reigned. There is no need to sweat it out
 with unpredictable interface names like the techies of yesterday but just in case
 you want to, you can disable all manner of predictability by passing &lt;code&gt;net.ifnames=0&lt;/code&gt;
 and &lt;code&gt;biosdevname=0&lt;/code&gt; to the kernel at boot time.&lt;/p&gt;
-&lt;h3 id="resources-refs-google-juice-"&gt;Resources, Refs &amp;amp; google juice:-&lt;/h3&gt;
+&lt;h3&gt;Resources, Refs &amp;amp; google juice:-&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://wiki.freedesktop.org/www/Software/systemd/PredictableNetworkInterfaceNames/" target="_blank"&gt;wiki.freedesktop.org article on the subject&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/systemd/systemd/blob/3f65d73149cd0f64eb3fdb0c71f55f6c1133fefe/src/udev/udev-builtin-net_id.c" target="_blank"&gt;Well commented source on systemd net-dev naming&lt;/a&gt;&lt;/li&gt;
@@ -131,7 +245,7 @@ and &lt;code&gt;biosdevname=0&lt;/code&gt; to the kernel at boot time.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://linux.dell.com/cgi-bin/cgit.cgi/biosdevname.git/tree/src/naming_policy.c?id=e51172768cec37ab0a350e439d2827b0c4e604a4#n31" target="_blank"&gt;biosdevname naming policy source&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://ivi.fnwi.uva.nl/sne/air//wiki/LogicalInterfaceNames/" target="_blank"&gt;An ice article on classic naming scheme and problem workarounds&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.amazon.com/gp/product/B00PKTGLWM?psc=1&amp;amp;redirect=true&amp;amp;ref_=oh_aui_d_detailpage_o00" target="_blank"&gt;How Linux Works: What Every Superuser Should Know&lt;/a&gt; by Brian Ward&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="linux"></category><category term="systemd"></category><category term="network interfaces"></category></entry><entry><title>Setting up a repo cache with NGINX</title><link href="http://tdt.rocks/repo_cache_ft_nginx.html" rel="alternate"></link><updated>2015-12-14T03:25:00+03:00</updated><author><name>James Nzomo</name></author><id>tag:tdt.rocks,2015-12-14:repo_cache_ft_nginx.html</id><summary type="html">&lt;h1 id="intro"&gt;Intro&lt;/h1&gt;
+&lt;/ul&gt;</content><category term="linux"></category><category term="systemd"></category><category term="network interfaces"></category></entry><entry><title>Setting up a repo cache with NGINX</title><link href="http://tdt.rocks/repo_cache_ft_nginx.html" rel="alternate"></link><published>2015-12-14T03:25:00+03:00</published><updated>2015-12-14T03:25:00+03:00</updated><author><name>James Nzomo</name></author><id>tag:tdt.rocks,2015-12-14:/repo_cache_ft_nginx.html</id><summary type="html">&lt;p&gt;A simple how to on setting up a linux package manager repo cache for those situations where a full blown mirror would be simply overkill.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Intro&lt;/h1&gt;
 &lt;p&gt;Say you have a ton of Linux hosts package managed by apt or rpm. Maybe it's
 a cluster, cloud env or just a simple learner's lab where a large groups of
 (if not all) nodes will end up with the same or similar set of packages
@@ -145,7 +259,7 @@ option.&lt;/p&gt;
 &lt;p&gt;What you probably want is a good repository caching proxy that initially fetches
 a pkg when a host has first dibs request, then stores and serves the same pkg
 for subsequent matching requests.&lt;/p&gt;
-&lt;h1 id="the-setup"&gt;The Setup&lt;/h1&gt;
+&lt;h1&gt;The Setup&lt;/h1&gt;
 &lt;p&gt;There's infinite ways to go about this. This post will cover how it's done using
 webserver reverse proxy caching feature to handle requests on behalf of a few
 upstream/origin repo servers.&lt;/p&gt;
@@ -158,11 +272,11 @@ upstream/origin repo servers.&lt;/p&gt;
 &lt;a href="https://www.nginx.com/blog/nginx-caching-guide/"&gt;NGINX&lt;/a&gt; for no apparent reason.&lt;/p&gt;
 &lt;p&gt;So start by grabbing yourself some webserver:- &lt;code&gt;apt-get install nginx&lt;/code&gt; and we'll sort this
 out in one simple sites-available config.&lt;/p&gt;
-&lt;h3 id="the-nginx-config"&gt;The NGINX config&lt;/h3&gt;
+&lt;h3&gt;The NGINX config&lt;/h3&gt;
 &lt;p&gt;The following minimal config sets nginx to handle this biz for the ubuntu
 repos defined there in. Read on...this section continues inside the conf file as comments.&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;The&lt;/span&gt; &lt;span class="nt"&gt;upstream&lt;/span&gt; &lt;span class="nt"&gt;directive&lt;/span&gt; &lt;span class="nt"&gt;defining&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;backend&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;upstream&lt;/span&gt; &lt;span class="nt"&gt;repo&lt;/span&gt; &lt;span class="nt"&gt;hosts&lt;/span&gt;
-&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;see&lt;/span&gt; &lt;span class="nt"&gt;http&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="nt"&gt;nginx&lt;/span&gt;&lt;span class="nc"&gt;.org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;en&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;http&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;ngx_http_upstream_module&lt;/span&gt;&lt;span class="nc"&gt;.html&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;The&lt;/span&gt; &lt;span class="nt"&gt;upstream&lt;/span&gt; &lt;span class="nt"&gt;directive&lt;/span&gt; &lt;span class="nt"&gt;defining&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;backend&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;upstream&lt;/span&gt; &lt;span class="nt"&gt;repo&lt;/span&gt; &lt;span class="nt"&gt;hosts&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;see&lt;/span&gt; &lt;span class="nt"&gt;http&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="nt"&gt;nginx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;en&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;http&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;ngx_http_upstream_module&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;html&lt;/span&gt;
 &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;There&lt;/span&gt; &lt;span class="nt"&gt;is&lt;/span&gt; &lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="nt"&gt;primary&lt;/span&gt; &lt;span class="nt"&gt;and&lt;/span&gt; &lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="nt"&gt;backup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;You&lt;/span&gt; &lt;span class="nt"&gt;can&lt;/span&gt; &lt;span class="nt"&gt;have&lt;/span&gt; &lt;span class="nt"&gt;more&lt;/span&gt; &lt;span class="nt"&gt;than&lt;/span&gt; &lt;span class="nt"&gt;that&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
 &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;NGINX&lt;/span&gt; &lt;span class="nt"&gt;will&lt;/span&gt; &lt;span class="nt"&gt;try&lt;/span&gt; &lt;span class="nt"&gt;to&lt;/span&gt; &lt;span class="nt"&gt;load&lt;/span&gt; &lt;span class="nt"&gt;balance&lt;/span&gt; &lt;span class="nt"&gt;between&lt;/span&gt; &lt;span class="nt"&gt;them&lt;/span&gt; &lt;span class="nt"&gt;using&lt;/span&gt; &lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;weighted round-robin&amp;quot;&lt;/span&gt;
 &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;algorithm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
@@ -172,22 +286,22 @@ repos defined there in. Read on...this section continues inside the conf file as
 &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;By&lt;/span&gt; &lt;span class="nt"&gt;default&lt;/span&gt; &lt;span class="nt"&gt;I&lt;/span&gt; &lt;span class="nt"&gt;found&lt;/span&gt; &lt;span class="nt"&gt;that&lt;/span&gt; &lt;span class="nt"&gt;if&lt;/span&gt; &lt;span class="nt"&gt;one&lt;/span&gt; &lt;span class="nt"&gt;is&lt;/span&gt; &lt;span class="nt"&gt;unreachable&lt;/span&gt; &lt;span class="nt"&gt;during&lt;/span&gt; &lt;span class="nt"&gt;startup&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="nt"&gt;nginx&lt;/span&gt; &lt;span class="nt"&gt;will&lt;/span&gt;
 &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;kaput&lt;/span&gt; &lt;span class="nt"&gt;leaving&lt;/span&gt; &lt;span class="nt"&gt;clues&lt;/span&gt; &lt;span class="nt"&gt;in&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;error&lt;/span&gt; &lt;span class="nt"&gt;log&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
 &lt;span class="nt"&gt;upstream&lt;/span&gt; &lt;span class="nt"&gt;ubuntu&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-  &lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="n"&gt;ke&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;archive&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ubuntu&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-  &lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="n"&gt;archive&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ubuntu&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt; &lt;span class="n"&gt;backup&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="err"&gt;server&lt;/span&gt; &lt;span class="err"&gt;ke.archive.ubuntu.com&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="err"&gt;server&lt;/span&gt; &lt;span class="err"&gt;archive.ubuntu.com&lt;/span&gt; &lt;span class="err"&gt;backup&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 
 &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;The&lt;/span&gt; &lt;span class="nt"&gt;following&lt;/span&gt; &lt;span class="nt"&gt;directive&lt;/span&gt; &lt;span class="nt"&gt;configures&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;cache&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;Storage&lt;/span&gt; &lt;span class="nt"&gt;et&lt;/span&gt; &lt;span class="nt"&gt;all&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;You&lt;/span&gt; &lt;span class="nt"&gt;may&lt;/span&gt; &lt;span class="nt"&gt;want&lt;/span&gt;
 &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;storage&lt;/span&gt; &lt;span class="nt"&gt;location&lt;/span&gt;  &lt;span class="nt"&gt;at&lt;/span&gt; &lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="nt"&gt;mount&lt;/span&gt; &lt;span class="nt"&gt;point&lt;/span&gt; &lt;span class="nt"&gt;with&lt;/span&gt; &lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="nt"&gt;filesystem&lt;/span&gt; &lt;span class="nt"&gt;on&lt;/span&gt; &lt;span class="nt"&gt;separate&lt;/span&gt; &lt;span class="nt"&gt;storage&lt;/span&gt;
 &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;device&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;backend&lt;/span&gt; &lt;span class="nt"&gt;to&lt;/span&gt; &lt;span class="nt"&gt;match&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
-&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;see&lt;/span&gt; &lt;span class="nt"&gt;http&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="nt"&gt;nginx&lt;/span&gt;&lt;span class="nc"&gt;.org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;en&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;http&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;ngx_http_proxy_module&lt;/span&gt;&lt;span class="nc"&gt;.html&lt;/span&gt;&lt;span class="nf"&gt;#proxy_cache_path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;see&lt;/span&gt; &lt;span class="nt"&gt;http&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="nt"&gt;nginx&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;en&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;docs&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;http&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;ngx_http_proxy_module&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nc"&gt;html&lt;/span&gt;&lt;span class="p"&gt;#&lt;/span&gt;&lt;span class="nn"&gt;proxy_cache_path&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
 &lt;span class="nt"&gt;proxy_cache_path&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nt"&gt;repo_mirror&lt;/span&gt; &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;defines&lt;/span&gt; &lt;span class="nt"&gt;where&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;cache&lt;/span&gt; &lt;span class="nt"&gt;is&lt;/span&gt; &lt;span class="nt"&gt;stashed&lt;/span&gt;
 
         &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;defines&lt;/span&gt; &lt;span class="nt"&gt;cache&lt;/span&gt; &lt;span class="nt"&gt;path&lt;/span&gt; &lt;span class="nt"&gt;heirarchy&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;yaani&lt;/span&gt; &lt;span class="nt"&gt;num&lt;/span&gt; &lt;span class="nt"&gt;directory&lt;/span&gt; &lt;span class="nt"&gt;levels&lt;/span&gt; &lt;span class="nt"&gt;in&lt;/span&gt; &lt;span class="nt"&gt;cache&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;
-        &lt;span class="nt"&gt;levels&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;1&lt;/span&gt;&lt;span class="nd"&gt;:2&lt;/span&gt;
+        &lt;span class="nt"&gt;levels&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;2&lt;/span&gt;
 
         &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;defines&lt;/span&gt; &lt;span class="nt"&gt;name&lt;/span&gt; &lt;span class="nt"&gt;and&lt;/span&gt; &lt;span class="nt"&gt;size&lt;/span&gt; &lt;span class="nt"&gt;of&lt;/span&gt; &lt;span class="nt"&gt;zone&lt;/span&gt; &lt;span class="nt"&gt;where&lt;/span&gt; &lt;span class="nt"&gt;all&lt;/span&gt; &lt;span class="nt"&gt;cache&lt;/span&gt; &lt;span class="nt"&gt;keys&lt;/span&gt; &lt;span class="nt"&gt;and&lt;/span&gt; &lt;span class="nt"&gt;cache&lt;/span&gt; &lt;span class="nt"&gt;metadata&lt;/span&gt; &lt;span class="nt"&gt;are&lt;/span&gt; &lt;span class="nt"&gt;stashed&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
         &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;Servers&lt;/span&gt; &lt;span class="nt"&gt;as&lt;/span&gt; &lt;span class="nt"&gt;a&lt;/span&gt; &lt;span class="nt"&gt;lookup&lt;/span&gt; &lt;span class="nt"&gt;for&lt;/span&gt; &lt;span class="nt"&gt;cached&lt;/span&gt; &lt;span class="nt"&gt;data&lt;/span&gt;
-        &lt;span class="nt"&gt;keys_zone&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;repository_cache&lt;/span&gt;&lt;span class="nd"&gt;:50m&lt;/span&gt;
+        &lt;span class="nt"&gt;keys_zone&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;repository_cache&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="nd"&gt;50m&lt;/span&gt;
 
         &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;The&lt;/span&gt; &lt;span class="nt"&gt;cached&lt;/span&gt; &lt;span class="nt"&gt;data&lt;/span&gt; &lt;span class="nt"&gt;access&lt;/span&gt; &lt;span class="nt"&gt;timeout&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nt"&gt;Pkgs&lt;/span&gt; &lt;span class="nt"&gt;get&lt;/span&gt; &lt;span class="nt"&gt;nuked&lt;/span&gt; &lt;span class="nt"&gt;if&lt;/span&gt; &lt;span class="nt"&gt;no&lt;/span&gt; &lt;span class="nt"&gt;access&lt;/span&gt; &lt;span class="nt"&gt;in&lt;/span&gt; &lt;span class="nt"&gt;14&lt;/span&gt; &lt;span class="nt"&gt;days&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
         &lt;span class="nt"&gt;inactive&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nt"&gt;14d&lt;/span&gt;
@@ -198,20 +312,20 @@ repos defined there in. Read on...this section continues inside the conf file as
 &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;Our&lt;/span&gt; &lt;span class="nt"&gt;no-name&lt;/span&gt; &lt;span class="nt"&gt;server&lt;/span&gt; &lt;span class="nt"&gt;block&lt;/span&gt;
 &lt;span class="nt"&gt;server&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
 
-  &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;Keep&lt;/span&gt; &lt;span class="n"&gt;our&lt;/span&gt; &lt;span class="n"&gt;eyes&lt;/span&gt; &lt;span class="n"&gt;peeled&lt;/span&gt; &lt;span class="n"&gt;on&lt;/span&gt; &lt;span class="n"&gt;port&lt;/span&gt; &lt;span class="m"&gt;80&lt;/span&gt;
-  &lt;span class="n"&gt;listen&lt;/span&gt; &lt;span class="m"&gt;80&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;Keep&lt;/span&gt; &lt;span class="err"&gt;our&lt;/span&gt; &lt;span class="err"&gt;eyes&lt;/span&gt; &lt;span class="err"&gt;peeled&lt;/span&gt; &lt;span class="err"&gt;on&lt;/span&gt; &lt;span class="err"&gt;port&lt;/span&gt; &lt;span class="err"&gt;80&lt;/span&gt;
+  &lt;span class="err"&gt;listen&lt;/span&gt; &lt;span class="err"&gt;80&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
-  &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;Location&lt;/span&gt; &lt;span class="n"&gt;directive&lt;/span&gt; &lt;span class="n"&gt;for&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ubuntu&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt;
-  &lt;span class="n"&gt;location&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;ubuntu&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
-    &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;our&lt;/span&gt; &lt;span class="n"&gt;cache&lt;/span&gt;&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="n"&gt;root&lt;/span&gt;
-    &lt;span class="n"&gt;root&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;repo_mirror&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;index_data&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;Location&lt;/span&gt; &lt;span class="err"&gt;directive&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;the&lt;/span&gt; &lt;span class="err"&gt;/ubuntu&lt;/span&gt; &lt;span class="err"&gt;path&lt;/span&gt;
+  &lt;span class="err"&gt;location&lt;/span&gt; &lt;span class="err"&gt;/ubuntu&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+    &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;our&lt;/span&gt; &lt;span class="err"&gt;cache&amp;#39;s&lt;/span&gt; &lt;span class="err"&gt;root&lt;/span&gt;
+    &lt;span class="err"&gt;root&lt;/span&gt; &lt;span class="err"&gt;/var/repo_mirror/index_data&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
-    &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="n"&gt;look&lt;/span&gt; &lt;span class="n"&gt;for&lt;/span&gt; &lt;span class="n"&gt;packages&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;following&lt;/span&gt; &lt;span class="n"&gt;order&lt;/span&gt;
-    &lt;span class="n"&gt;try_files&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="n"&gt;uri&lt;/span&gt; &lt;span class="o"&gt;@&lt;/span&gt;&lt;span class="n"&gt;ubuntu&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="err"&gt;look&lt;/span&gt; &lt;span class="err"&gt;for&lt;/span&gt; &lt;span class="err"&gt;packages&lt;/span&gt; &lt;span class="err"&gt;in&lt;/span&gt; &lt;span class="err"&gt;the&lt;/span&gt; &lt;span class="err"&gt;following&lt;/span&gt; &lt;span class="err"&gt;order&lt;/span&gt;
+    &lt;span class="err"&gt;try_files&lt;/span&gt; &lt;span class="err"&gt;$uri&lt;/span&gt; &lt;span class="err"&gt;@ubuntu&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
   &lt;span class="p"&gt;}&lt;/span&gt;
 
   &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;Location&lt;/span&gt; &lt;span class="nt"&gt;directive&lt;/span&gt; &lt;span class="nt"&gt;for&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;named&lt;/span&gt; &lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="nt"&gt;defined&lt;/span&gt; &lt;span class="nt"&gt;above&lt;/span&gt;
-  &lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="k"&gt;@ubuntu&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="nt"&gt;location&lt;/span&gt; &lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="k"&gt;ubuntu&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
 
     &lt;span class="err"&gt;#&lt;/span&gt; &lt;span class="nt"&gt;map&lt;/span&gt; &lt;span class="nt"&gt;this&lt;/span&gt; &lt;span class="nt"&gt;to&lt;/span&gt; &lt;span class="nt"&gt;the&lt;/span&gt; &lt;span class="nt"&gt;upstream&lt;/span&gt; &lt;span class="nt"&gt;definition&lt;/span&gt; &lt;span class="nt"&gt;above&lt;/span&gt;
     &lt;span class="nt"&gt;proxy_pass&lt;/span&gt; &lt;span class="nt"&gt;http&lt;/span&gt;&lt;span class="o"&gt;://&lt;/span&gt;&lt;span class="nt"&gt;ubuntu&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
@@ -236,7 +350,7 @@ repos defined there in. Read on...this section continues inside the conf file as
 to copy paste it into &lt;code&gt;/etc/nginx/sites-available/&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;One enhancement that can be made to all this is to configure a reliable storage device for
 cache store.&lt;/p&gt;
-&lt;h3 id="the-client-side"&gt;The client side&lt;/h3&gt;
+&lt;h3&gt;The client side&lt;/h3&gt;
 &lt;p&gt;It goes without saying that repo related requests have to somehow be routed to the
 proxy in order for all this to work.&lt;/p&gt;
 &lt;p&gt;One way is to modify the client's &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; or &lt;code&gt;/etc/yum.repos.d/CentOS-*.repo&lt;/code&gt;
@@ -248,7 +362,7 @@ option is in grey area territory, we'll go with the former and modify the
 repo configs. Read on to the next section for that (because the writer wrote
 that before the one you reading now and he cannot be bothered to repeat
 himself or make mods to the article at this point).&lt;/p&gt;
-&lt;h1 id="bonus-vagrant-ansible-deploy-material"&gt;Bonus vagrant-ansible deploy material&lt;/h1&gt;
+&lt;h1&gt;Bonus vagrant-ansible deploy material&lt;/h1&gt;
 &lt;p&gt;Just in case you'd like to test all this, or would like some CM to deploy the same
 IRL, there is a rudimentary
 &lt;a href="https://github.com/mrmoje/repo_cache_plays_staring_nginx"&gt;"demo setup git repo"&lt;/a&gt;
@@ -285,7 +399,7 @@ while you do that.&lt;/p&gt;
 file to see hodge-podge of provisioning methods and the
 &lt;a href="https://www.gnu.org/software/sed/manual/sed.html"&gt;sedding&lt;/a&gt; that swaps the vanilla repos
 for our example proxy.&lt;/p&gt;
-&lt;h1 id="outro"&gt;Outro&lt;/h1&gt;
+&lt;h1&gt;Outro&lt;/h1&gt;
 &lt;p&gt;We put a &lt;a href="https://github.com/kili/playbooks/blob/master/playbooks/repository_cache.yaml"&gt;variant of this proxy-cache&lt;/a&gt;
 method to good use at a cloud compute startup I used to work for and it worked
 out well for us and our tenants.&lt;/p&gt;
@@ -297,14 +411,14 @@ been taken up by a multi repo mirror.&lt;/p&gt;
 take longer for the first host/request to get sorted which may be bad for
 the installing party depending on how pressed for time they are, but then again
 with life, every now and then, somebody has to take one for the team. C'est la Vie!&lt;/p&gt;
-&lt;h3 id="resources-refs-google-juice-"&gt;Resources, Refs &amp;amp; google juice:-&lt;/h3&gt;
+&lt;h3&gt;Resources, Refs &amp;amp; google juice:-&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="(https://trafficserver.readthedocs.org/en/5.3.x/admin/reverse-proxy-http-redirects.en.html)"&gt;Trafficserver dox on reverse proxy&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="(http://nginx.org/en/docs/http/ngx_http_proxy_module.html)"&gt;NGINX proxy module documentation&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;An excelent tut on caching with nginx with video &amp;amp; docker hands-on:- &lt;a href="http://czerasz.com/2015/03/30/nginx-caching-tutorial/"&gt;http://czerasz.com/2015/03/30/nginx-caching-tutorial/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="nginx"></category><category term="proxy"></category><category term="cache"></category><category term="linux packages"></category></entry><entry><title>TEST POST</title><link href="http://tdt.rocks/testing.html" rel="alternate"></link><updated>1969-12-31T23:59:59+03:00</updated><author><name>James Nzomo</name></author><id>tag:tdt.rocks,1969-12-31:testing.html</id><summary type="html">&lt;p&gt;&lt;center&gt;
-&lt;img alt="PM5544" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/PM5544_with_non-PAL_signals.png" /&gt;&lt;/p&gt;
-&lt;h2 id="problem-stfu"&gt;Problem? &amp;rarr; &lt;button onclick=osc.stop()&gt;STFU!&lt;/button&gt;&lt;/h2&gt;
+&lt;/ul&gt;</content><category term="nginx"></category><category term="proxy"></category><category term="cache"></category><category term="linux packages"></category></entry><entry><title>TEST POST</title><link href="http://tdt.rocks/testing.html" rel="alternate"></link><published>1969-12-31T23:59:59+03:00</published><updated>1969-12-31T23:59:59+03:00</updated><author><name>James Nzomo</name></author><id>tag:tdt.rocks,1969-12-31:/testing.html</id><summary type="html">&lt;p&gt;A simple test post...complete with a PAL test pattern and an annoying complementary 1KHz tone - just for your ears.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;center&gt;
+&lt;img alt="PM5544" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/PM5544_with_non-PAL_signals.png"&gt;&lt;/p&gt;
+&lt;h2&gt;Problem? &amp;rarr; &lt;button onclick=osc.stop()&gt;STFU!&lt;/button&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;/center&gt;
 &lt;script type="text/javascript"&gt;
 var context = new AudioContext();
@@ -320,32 +434,32 @@ osc.start(0);
 &lt;/script&gt;&lt;/p&gt;
 &lt;hr&gt;
 
-&lt;h1 id="test-content"&gt;TEST CONTENT&lt;/h1&gt;
+&lt;h1&gt;TEST CONTENT&lt;/h1&gt;
 &lt;p&gt;with placeholder text generated at &lt;a href="http://slipsum.com/"&gt;Samuel L. Ipsum&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id="h1"&gt;H1&lt;/h1&gt;
-&lt;h2 id="h2"&gt;H2&lt;/h2&gt;
-&lt;h3 id="h3"&gt;H3&lt;/h3&gt;
-&lt;h4 id="h4"&gt;H4&lt;/h4&gt;
-&lt;h5 id="h5"&gt;H5&lt;/h5&gt;
-&lt;h6 id="h6"&gt;H6&lt;/h6&gt;
-&lt;h1 id="underline-h1"&gt;Underline-H1&lt;/h1&gt;
-&lt;h2 id="underline-h2"&gt;Underline-H2&lt;/h2&gt;
-&lt;h3 id="formatting"&gt;Formatting&lt;/h3&gt;
-&lt;p&gt;Asterisks -&amp;gt; &lt;em&gt;Italic&lt;/em&gt;, &lt;strong&gt;bold&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;bold italic&lt;/em&gt;&lt;/strong&gt;&lt;br /&gt;
-Underscores -&amp;gt; &lt;em&gt;Italic&lt;/em&gt;, &lt;strong&gt;bold&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;bold italic&lt;/em&gt;&lt;/strong&gt;&lt;br /&gt;
-&lt;code&gt;monospace&lt;/code&gt;&lt;br /&gt;
+&lt;h1&gt;H1&lt;/h1&gt;
+&lt;h2&gt;H2&lt;/h2&gt;
+&lt;h3&gt;H3&lt;/h3&gt;
+&lt;h4&gt;H4&lt;/h4&gt;
+&lt;h5&gt;H5&lt;/h5&gt;
+&lt;h6&gt;H6&lt;/h6&gt;
+&lt;h1&gt;Underline-H1&lt;/h1&gt;
+&lt;h2&gt;Underline-H2&lt;/h2&gt;
+&lt;h3&gt;Formatting&lt;/h3&gt;
+&lt;p&gt;Asterisks -&amp;gt; &lt;em&gt;Italic&lt;/em&gt;, &lt;strong&gt;bold&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;bold italic&lt;/em&gt;&lt;/strong&gt;&lt;br&gt;
+Underscores -&amp;gt; &lt;em&gt;Italic&lt;/em&gt;, &lt;strong&gt;bold&lt;/strong&gt;, &lt;strong&gt;&lt;em&gt;bold italic&lt;/em&gt;&lt;/strong&gt;&lt;br&gt;
+&lt;code&gt;monospace&lt;/code&gt;&lt;br&gt;
 ~~~strikethrough text~~~&lt;/p&gt;
-&lt;h3 id="paragraph-one"&gt;Paragraph one&lt;/h3&gt;
+&lt;h3&gt;Paragraph one&lt;/h3&gt;
 &lt;p&gt;Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is
 advertised as the most popular gun in American crime. Do you believe that shit?
 It actually says that in the little book that comes with it: the most popular
 gun in American crime. Like they're actually proud of that shit.&lt;/p&gt;
-&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt;1
 2
 3
 4
 5
-6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c1"&gt;//function sets&lt;/span&gt;
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;//function sets&lt;/span&gt;
 &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;set_portAbit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;bt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="n"&gt;val&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;sPORTA&lt;/span&gt; &lt;span class="o"&gt;|=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;bt&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;sPORTA&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;=&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;bt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
@@ -354,13 +468,13 @@ gun in American crime. Like they're actually proud of that shit.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
-&lt;h3 id="paragraph-two"&gt;Paragraph two&lt;/h3&gt;
+&lt;h3&gt;Paragraph two&lt;/h3&gt;
 &lt;p&gt;Well, the way they make shows is, they make one show. That show's called a pilot.
 Then they show that show to the people who make shows, and on the strength of
 that one show they decide if they're going to make more shows. Some pilots get
 picked and become television programs. Some don't, become nothing.
 She starred in one of the ones that became nothing.&lt;/p&gt;
-&lt;h3 id="paragraph-three-block-quotes"&gt;Paragraph three block quotes&lt;/h3&gt;
+&lt;h3&gt;Paragraph three block quotes&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Your bones don't break, mine do. That's clear. Your cells react to bacteria and
 viruses differently than mine. You don't get sick, I do. That's also clear. But
@@ -368,8 +482,8 @@ for some reason, you and I react the exact same way to water. We swallow it too
 fast, we choke. We get some in our lungs, we drown. However unreal it may seem,
 we are connected, you and I. We're on the same curve, just on opposite ends.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id="longer-code-block"&gt;Longer Code block&lt;/h3&gt;
-&lt;table class="codehilitetable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+&lt;h3&gt;Longer Code block&lt;/h3&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
  3
  4
@@ -423,11 +537,11 @@ we are connected, you and I. We're on the same curve, just on opposite ends.&lt;
 52
 53
 54
-55&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;xc.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;stdbool.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;string.h&amp;gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include &amp;lt;ctype.h&amp;gt;&lt;/span&gt;
+55&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;xc.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdbool.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;string.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;ctype.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
 &lt;span class="c1"&gt;// #pragma config statements should precede project file includes.&lt;/span&gt;
 &lt;span class="c1"&gt;// Use project enums instead of #define for ON and OFF.&lt;/span&gt;
@@ -481,20 +595,20 @@ we are connected, you and I. We're on the same curve, just on opposite ends.&lt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;p&gt;List of Links:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://tdt.rocks"&gt;TDT&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://kili.io"&gt;KILI&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://nairobilug.or.ke"&gt;NLUG&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;p&gt;Numbered list of links:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;a href="http://www.meetup.com/OpenStack-Nairobi/"&gt;Openstack Nairobi&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.meetup.com/Python-Nairobi/"&gt;Python Nairobi&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;hr /&gt;
+&lt;hr&gt;
 &lt;p&gt;Nested list:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -511,4 +625,4 @@ we are connected, you and I. We're on the same curve, just on opposite ends.&lt;
 &lt;li&gt;https://github.com/Python-Nairobi&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</summary><category term="testing"></category></entry></feed>
+&lt;/ol&gt;</content><category term="testing"></category></entry></feed>

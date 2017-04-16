@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>TDT</title><link href="http://tdt.rocks/" rel="alternate"></link><link href="http://tdt.rocks/feeds/networking.atom.xml" rel="self"></link><id>http://tdt.rocks/</id><updated>2015-12-18T03:25:00+03:00</updated><entry><title>Linux network interface naming</title><link href="http://tdt.rocks/linux_network_interface_naming.html" rel="alternate"></link><updated>2015-12-18T03:25:00+03:00</updated><author><name>James Nzomo</name></author><id>tag:tdt.rocks,2015-12-18:linux_network_interface_naming.html</id><summary type="html">&lt;h1 id="intro"&gt;Intro&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>TDT - Networking</title><link href="http://tdt.rocks/" rel="alternate"></link><link href="http://tdt.rocks/feeds/networking.atom.xml" rel="self"></link><id>http://tdt.rocks/</id><updated>2015-12-18T03:25:00+03:00</updated><entry><title>Linux network interface naming</title><link href="http://tdt.rocks/linux_network_interface_naming.html" rel="alternate"></link><published>2015-12-18T03:25:00+03:00</published><updated>2015-12-18T03:25:00+03:00</updated><author><name>James Nzomo</name></author><id>tag:tdt.rocks,2015-12-18:/linux_network_interface_naming.html</id><summary type="html">&lt;p&gt;About how net-if's get their names - from kernel only naming to biosdevname and systemd-udev schemes.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Intro&lt;/h1&gt;
 &lt;p&gt;If you are running a recent ubuntu release ( &amp;gt; 15.XX ), you've probably noticed
 that your net interfaces have been "rebranded". Maybe this noticing came in the
 form of your sripts being broken....your &lt;code&gt;/etc/network/if-up.d/XXX&lt;/code&gt; script or
@@ -8,8 +8,8 @@ scripts (bad practice which im guilty of). It worked previously on your
 old-release, then you had to upgrade...but I digress.&lt;/p&gt;
 &lt;p&gt;In this post, I'll try talking about how net devices get their names, the schemes
 employed and the tech behind the schemes.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h1 id="the-classic-naming-scheme-eth0-n"&gt;The classic naming scheme - &lt;code&gt;eth&amp;lt;0-n&amp;gt;&lt;/code&gt;&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h1&gt;The classic naming scheme - &lt;code&gt;eth&amp;lt;0-n&amp;gt;&lt;/code&gt;&lt;/h1&gt;
 &lt;p&gt;Not so long ago, without any devops intervention, interface names were decided
 solely by the Kernel based on the order in which they are enumerated which in
 turn is based on the order in which their modules/drivers are loaded and then,
@@ -29,8 +29,8 @@ upgrades or sometimes even reboots.&lt;/p&gt;
 and udev rules&lt;/a&gt; but we live in modern times and
 techies should not be bothered to jump through those hoops just to sort out
 something that should be automagic.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h1 id="biosdevname-emport-pslotpport"&gt;biosdevname - &lt;code&gt;em&amp;lt;port&amp;gt;&lt;/code&gt;, &lt;code&gt;p&amp;lt;slot&amp;gt;p&amp;lt;port&amp;gt;&lt;/code&gt;&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h1&gt;biosdevname - &lt;code&gt;em&amp;lt;port&amp;gt;&lt;/code&gt;, &lt;code&gt;p&amp;lt;slot&amp;gt;p&amp;lt;port&amp;gt;&lt;/code&gt;&lt;/h1&gt;
 &lt;p&gt;One of the efforts at bringing order out of chaos is dell's &lt;a href="http://linux.dell.com/biosdevname/"&gt;biosdevname&lt;/a&gt;
 project which according to the project description is &lt;q&gt;a udev helper for naming
 devices per BIOS names.&lt;/q&gt; This helper-utility determines device names based on
@@ -57,8 +57,8 @@ you should get something along the lines of &lt;code&gt;em1&lt;/code&gt; or &lt;
 and what's slotted in...but it has it's limitations, one of them being that it doesn't
 cater for a wider range of interface types/devices. It refused to name my usb
 ethernet dongle.&lt;/p&gt;
-&lt;hr /&gt;
-&lt;h1 id="systemd-udev-enoindex-ensslotdport"&gt;systemd udev - &lt;code&gt;eno&amp;lt;index&amp;gt;&lt;/code&gt;, &lt;code&gt;ens&amp;lt;slot&amp;gt;d&amp;lt;port&amp;gt;&lt;/code&gt;&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h1&gt;systemd udev - &lt;code&gt;eno&amp;lt;index&amp;gt;&lt;/code&gt;, &lt;code&gt;ens&amp;lt;slot&amp;gt;d&amp;lt;port&amp;gt;&lt;/code&gt;&lt;/h1&gt;
 &lt;p&gt;Starting version 197, shortly after udev was absorbed into systemd source
 tree, native predictable naming was added to the mix.&lt;/p&gt;
 &lt;p&gt;According to &lt;a href="http://wiki.freedesktop.org/www/Software/systemd/PredictableNetworkInterfaceNames/"&gt;the systemd wiki on the topic&lt;/a&gt;, and the
@@ -66,7 +66,7 @@ tree, native predictable naming was added to the mix.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;firmware/bios-provided for on-board devices - &lt;code&gt;&amp;lt;type&amp;gt;o&amp;lt;index&amp;gt;[d&amp;lt;dev_port&amp;gt;]&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;firmware/bios-provided for pci-express hotplug slot - &lt;code&gt;&amp;lt;type&amp;gt;s&amp;lt;slot&amp;gt;[f&amp;lt;function&amp;gt;][d&amp;lt;dev_port&amp;gt;]&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;physical/geographical location for PCI devices -&lt;br /&gt;
+&lt;li&gt;physical/geographical location for PCI devices -&lt;br&gt;
 &lt;code&gt;&amp;lt;type&amp;gt;[P&amp;lt;domain&amp;gt;]p&amp;lt;bus&amp;gt;s&amp;lt;slot&amp;gt;[f&amp;lt;function&amp;gt;][[d&amp;lt;dev_port&amp;gt;]|[u&amp;lt;port&amp;gt;][..][c&amp;lt;config&amp;gt;][i&amp;lt;interface&amp;gt;]]&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;the devices's MAC address - &lt;code&gt;&amp;lt;type&amp;gt;x&amp;lt;MAC&amp;gt;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -86,10 +86,10 @@ ethernet interface provided by a device on bus #8 slot #0 with only 1 port and
 location/path scheme we can tell that it's an ethernet interface provided by a
 usb device connected to a usb controller on PCI bus #0, device #29, with function #7
 plugged into usb port #1.&lt;/p&gt;
-&lt;h3 id="systemd-udev-naming-policy"&gt;systemd-udev Naming Policy&lt;/h3&gt;
+&lt;h3&gt;systemd-udev Naming Policy&lt;/h3&gt;
 &lt;p&gt;Net devices may have more than one name generated for them which you can
 view by querying the udev database (filtering the results):-  &lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;udevadm info -q property -p /sys/class/net/ens33 &lt;span class="p"&gt;|&lt;/span&gt; grep ID_NET_NAME
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;udevadm info -q property -p /sys/class/net/ens33 &lt;span class="p"&gt;|&lt;/span&gt; grep ID_NET_NAME
 &lt;span class="nv"&gt;ID_NET_NAME_MAC&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;enx112233445566
 &lt;span class="nv"&gt;ID_NET_NAME_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;enp2s0
 &lt;span class="nv"&gt;ID_NET_NAME_SLOT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ens33
@@ -100,13 +100,13 @@ view by querying the udev database (filtering the results):-  &lt;/p&gt;
 The choice of name is determined by a list if policies defined for &lt;code&gt;NamePolicy&lt;/code&gt;
 in the respective link config file (see &lt;code&gt;man systemd.link&lt;/code&gt;). To find out what
 link file is in use, query udevadm like so:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;udevadm info -q property -p /sys/class/net/ens33 &lt;span class="p"&gt;|&lt;/span&gt; grep LINK_FILE
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;udevadm info -q property -p /sys/class/net/ens33 &lt;span class="p"&gt;|&lt;/span&gt; grep LINK_FILE
 &lt;span class="nv"&gt;ID_NET_LINK_FILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/lib/systemd/network/99-default.link
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;I get 99-default.link, contents of which are:-&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;cat /lib/systemd/network/99-default.link
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat /lib/systemd/network/99-default.link
 &lt;span class="o"&gt;[&lt;/span&gt;Link&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;span class="nv"&gt;NamePolicy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;kernel database onboard slot path
 &lt;span class="nv"&gt;MACAddressPolicy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;persistent
@@ -117,13 +117,13 @@ link file is in use, query udevadm like so:-&lt;/p&gt;
 in which they appear and the first successful one is used to set the device name.
 In this case with ens33 being chosen, &lt;code&gt;kernel&lt;/code&gt;, &lt;code&gt;database&lt;/code&gt; and &lt;code&gt;onboard&lt;/code&gt; failed,
 &lt;code&gt;slot&lt;/code&gt; passed and &lt;code&gt;path&lt;/code&gt; wasn't considered.&lt;/p&gt;
-&lt;h1 id="outro"&gt;Outro&lt;/h1&gt;
+&lt;h1&gt;Outro&lt;/h1&gt;
 &lt;p&gt;systemd-udev is now standard on most big name distros (ubuntu included) and has
 naturally superseded biosdevname where it reigned. There is no need to sweat it out
 with unpredictable interface names like the techies of yesterday but just in case
 you want to, you can disable all manner of predictability by passing &lt;code&gt;net.ifnames=0&lt;/code&gt;
 and &lt;code&gt;biosdevname=0&lt;/code&gt; to the kernel at boot time.&lt;/p&gt;
-&lt;h3 id="resources-refs-google-juice-"&gt;Resources, Refs &amp;amp; google juice:-&lt;/h3&gt;
+&lt;h3&gt;Resources, Refs &amp;amp; google juice:-&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://wiki.freedesktop.org/www/Software/systemd/PredictableNetworkInterfaceNames/" target="_blank"&gt;wiki.freedesktop.org article on the subject&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://github.com/systemd/systemd/blob/3f65d73149cd0f64eb3fdb0c71f55f6c1133fefe/src/udev/udev-builtin-net_id.c" target="_blank"&gt;Well commented source on systemd net-dev naming&lt;/a&gt;&lt;/li&gt;
@@ -131,4 +131,4 @@ and &lt;code&gt;biosdevname=0&lt;/code&gt; to the kernel at boot time.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://linux.dell.com/cgi-bin/cgit.cgi/biosdevname.git/tree/src/naming_policy.c?id=e51172768cec37ab0a350e439d2827b0c4e604a4#n31" target="_blank"&gt;biosdevname naming policy source&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://ivi.fnwi.uva.nl/sne/air//wiki/LogicalInterfaceNames/" target="_blank"&gt;An ice article on classic naming scheme and problem workarounds&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.amazon.com/gp/product/B00PKTGLWM?psc=1&amp;amp;redirect=true&amp;amp;ref_=oh_aui_d_detailpage_o00" target="_blank"&gt;How Linux Works: What Every Superuser Should Know&lt;/a&gt; by Brian Ward&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="linux"></category><category term="systemd"></category><category term="network interfaces"></category></entry></feed>
+&lt;/ul&gt;</content><category term="linux"></category><category term="systemd"></category><category term="network interfaces"></category></entry></feed>

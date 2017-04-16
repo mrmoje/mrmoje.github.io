@@ -5,7 +5,7 @@
       <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="canonical" href="http://tdt.rocks/linux_network_interface_naming.html" />
+    <link rel="canonical" href="./linux_network_interface_naming.html" />
 
     <title>  TDT &mdash; Linux network interface naming
 </title>
@@ -16,23 +16,14 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="http://tdt.rocks/theme/css/pygments.css">
-    <link rel="stylesheet" href="http://tdt.rocks/theme/css/style.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+    <link rel="stylesheet" href="./theme/css/style.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-  <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-71190709-1', 'auto');
-      ga('send', 'pageview');
-  </script>
 
     <meta name="author" content="James Nzomo">
     <meta name="description" content="About how net-if's get their names - from kernel only naming to biosdevname and systemd-udev schemes.">
@@ -45,7 +36,7 @@
     <div class="header-inner">
       <!-- <h3 class="header-text">Thoughts & Deeds on Tech</h3> -->
       <ul class="header-menu list-inline text-right">
-        <li><a class="nodec" href="http://tdt.rocks/categories.html">Categories</a></li>
+        <li><a class="nodec" href="./categories.html">Categories</a></li>
         <li class="muted">|</li>
 
         <li><a class="nodec social-link icon-github" href="https://github.com/mrmoje" target="_blank"></a></li>
@@ -54,7 +45,7 @@
         <li><a class="nodec social-link icon-stackoverflow" href="https://stackoverflow.com/users/1002644/moje" target="_blank"></a></li>
       </ul>
       <h1 class="header-name">
-        <a id="sitename" class="nodec" href="http://tdt.rocks">TDT</a>
+        <a id="sitename" class="nodec" href=".">TDT</a>
       </h1>
     </div>
   </div>
@@ -71,7 +62,7 @@
       </li>
       <li class="muted">&middot;</li>
       <li class="post-category">
-        <a href="http://tdt.rocks/category/networking.html">Networking</a>
+        <a href="./category/networking.html">Networking</a>
       </li>
         <li class="muted">&middot;</li>
         <li>
@@ -79,12 +70,12 @@
         <li class="muted">&middot;</li>
         <li>
           <address class="post-author">
-            By <a href="http://tdt.rocks/author/james-nzomo.html">James Nzomo</a>
+            By <a href="./author/james-nzomo.html">James Nzomo</a>
           </address>
         </li>
     </ul>
     <div class="post-content">
-      <h1 id="intro">Intro</h1>
+      <h1>Intro</h1>
 <p>If you are running a recent ubuntu release ( &gt; 15.XX ), you've probably noticed
 that your net interfaces have been "rebranded". Maybe this noticing came in the
 form of your sripts being broken....your <code>/etc/network/if-up.d/XXX</code> script or
@@ -93,8 +84,8 @@ scripts (bad practice which im guilty of). It worked previously on your
 old-release, then you had to upgrade...but I digress.</p>
 <p>In this post, I'll try talking about how net devices get their names, the schemes
 employed and the tech behind the schemes.</p>
-<hr />
-<h1 id="the-classic-naming-scheme-eth0-n">The classic naming scheme - <code>eth&lt;0-n&gt;</code></h1>
+<hr>
+<h1>The classic naming scheme - <code>eth&lt;0-n&gt;</code></h1>
 <p>Not so long ago, without any devops intervention, interface names were decided
 solely by the Kernel based on the order in which they are enumerated which in
 turn is based on the order in which their modules/drivers are loaded and then,
@@ -114,8 +105,8 @@ upgrades or sometimes even reboots.</p>
 and udev rules</a> but we live in modern times and
 techies should not be bothered to jump through those hoops just to sort out
 something that should be automagic.</p>
-<hr />
-<h1 id="biosdevname-emport-pslotpport">biosdevname - <code>em&lt;port&gt;</code>, <code>p&lt;slot&gt;p&lt;port&gt;</code></h1>
+<hr>
+<h1>biosdevname - <code>em&lt;port&gt;</code>, <code>p&lt;slot&gt;p&lt;port&gt;</code></h1>
 <p>One of the efforts at bringing order out of chaos is dell's <a href="http://linux.dell.com/biosdevname/">biosdevname</a>
 project which according to the project description is <q>a udev helper for naming
 devices per BIOS names.</q> This helper-utility determines device names based on
@@ -142,8 +133,8 @@ you should get something along the lines of <code>em1</code> or <code>p1p1</code
 and what's slotted in...but it has it's limitations, one of them being that it doesn't
 cater for a wider range of interface types/devices. It refused to name my usb
 ethernet dongle.</p>
-<hr />
-<h1 id="systemd-udev-enoindex-ensslotdport">systemd udev - <code>eno&lt;index&gt;</code>, <code>ens&lt;slot&gt;d&lt;port&gt;</code></h1>
+<hr>
+<h1>systemd udev - <code>eno&lt;index&gt;</code>, <code>ens&lt;slot&gt;d&lt;port&gt;</code></h1>
 <p>Starting version 197, shortly after udev was absorbed into systemd source
 tree, native predictable naming was added to the mix.</p>
 <p>According to <a href="http://wiki.freedesktop.org/www/Software/systemd/PredictableNetworkInterfaceNames/">the systemd wiki on the topic</a>, and the
@@ -151,7 +142,7 @@ tree, native predictable naming was added to the mix.</p>
 <ul>
 <li>firmware/bios-provided for on-board devices - <code>&lt;type&gt;o&lt;index&gt;[d&lt;dev_port&gt;]</code></li>
 <li>firmware/bios-provided for pci-express hotplug slot - <code>&lt;type&gt;s&lt;slot&gt;[f&lt;function&gt;][d&lt;dev_port&gt;]</code></li>
-<li>physical/geographical location for PCI devices -<br />
+<li>physical/geographical location for PCI devices -<br>
 <code>&lt;type&gt;[P&lt;domain&gt;]p&lt;bus&gt;s&lt;slot&gt;[f&lt;function&gt;][[d&lt;dev_port&gt;]|[u&lt;port&gt;][..][c&lt;config&gt;][i&lt;interface&gt;]]</code></li>
 <li>the devices's MAC address - <code>&lt;type&gt;x&lt;MAC&gt;</code></li>
 </ul>
@@ -171,10 +162,10 @@ ethernet interface provided by a device on bus #8 slot #0 with only 1 port and
 location/path scheme we can tell that it's an ethernet interface provided by a
 usb device connected to a usb controller on PCI bus #0, device #29, with function #7
 plugged into usb port #1.</p>
-<h3 id="systemd-udev-naming-policy">systemd-udev Naming Policy</h3>
+<h3>systemd-udev Naming Policy</h3>
 <p>Net devices may have more than one name generated for them which you can
 view by querying the udev database (filtering the results):-  </p>
-<div class="codehilite"><pre>udevadm info -q property -p /sys/class/net/ens33 <span class="p">|</span> grep ID_NET_NAME
+<div class="highlight"><pre><span></span>udevadm info -q property -p /sys/class/net/ens33 <span class="p">|</span> grep ID_NET_NAME
 <span class="nv">ID_NET_NAME_MAC</span><span class="o">=</span>enx112233445566
 <span class="nv">ID_NET_NAME_PATH</span><span class="o">=</span>enp2s0
 <span class="nv">ID_NET_NAME_SLOT</span><span class="o">=</span>ens33
@@ -185,13 +176,13 @@ view by querying the udev database (filtering the results):-  </p>
 The choice of name is determined by a list if policies defined for <code>NamePolicy</code>
 in the respective link config file (see <code>man systemd.link</code>). To find out what
 link file is in use, query udevadm like so:-</p>
-<div class="codehilite"><pre>udevadm info -q property -p /sys/class/net/ens33 <span class="p">|</span> grep LINK_FILE
+<div class="highlight"><pre><span></span>udevadm info -q property -p /sys/class/net/ens33 <span class="p">|</span> grep LINK_FILE
 <span class="nv">ID_NET_LINK_FILE</span><span class="o">=</span>/lib/systemd/network/99-default.link
 </pre></div>
 
 
 <p>I get 99-default.link, contents of which are:-</p>
-<div class="codehilite"><pre>cat /lib/systemd/network/99-default.link
+<div class="highlight"><pre><span></span>cat /lib/systemd/network/99-default.link
 <span class="o">[</span>Link<span class="o">]</span>
 <span class="nv">NamePolicy</span><span class="o">=</span>kernel database onboard slot path
 <span class="nv">MACAddressPolicy</span><span class="o">=</span>persistent
@@ -202,13 +193,13 @@ link file is in use, query udevadm like so:-</p>
 in which they appear and the first successful one is used to set the device name.
 In this case with ens33 being chosen, <code>kernel</code>, <code>database</code> and <code>onboard</code> failed,
 <code>slot</code> passed and <code>path</code> wasn't considered.</p>
-<h1 id="outro">Outro</h1>
+<h1>Outro</h1>
 <p>systemd-udev is now standard on most big name distros (ubuntu included) and has
 naturally superseded biosdevname where it reigned. There is no need to sweat it out
 with unpredictable interface names like the techies of yesterday but just in case
 you want to, you can disable all manner of predictability by passing <code>net.ifnames=0</code>
 and <code>biosdevname=0</code> to the kernel at boot time.</p>
-<h3 id="resources-refs-google-juice-">Resources, Refs &amp; google juice:-</h3>
+<h3>Resources, Refs &amp; google juice:-</h3>
 <ul>
 <li><a href="http://wiki.freedesktop.org/www/Software/systemd/PredictableNetworkInterfaceNames/" target="_blank">wiki.freedesktop.org article on the subject</a></li>
 <li><a href="https://github.com/systemd/systemd/blob/3f65d73149cd0f64eb3fdb0c71f55f6c1133fefe/src/udev/udev-builtin-net_id.c" target="_blank">Well commented source on systemd net-dev naming</a></li>
@@ -260,8 +251,8 @@ and <code>biosdevname=0</code> to the kernel at boot time.</p>
     </div>
   </div>
 </footer> <!-- /.footer -->
-  <script src="http://tdt.rocks/theme/js/jquery.min.js"></script>
-  <script src="http://tdt.rocks/theme/js/bootstrap.min.js"></script>
+  <script src="./theme/js/jquery.min.js"></script>
+  <script src="./theme/js/bootstrap.min.js"></script>
 </body> <!-- 42 -->
 
 </html>
