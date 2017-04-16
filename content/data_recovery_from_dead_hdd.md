@@ -4,7 +4,7 @@ Tags: data recovery, electronics
 Slug: data_recovery_from_dead_HDD
 Category: Data Recovery
 Author: James Nzomo
-Summary: A touching story about how non-backed up data was rescued from oblivion and in the nick of time.
+Summary: A story about how non-backed up data was rescued from oblivion and in the nick of time.
 
 
 # Intro
