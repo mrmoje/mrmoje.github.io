@@ -1,6 +1,7 @@
 [submodule "pelican-alchemy"]
 	path = pelican-alchemy
 	url = git@github.com:mrmoje/pelican-alchemy.git
+	master = master
 [submodule "pelican-plugins"]
 	path = pelican-plugins
 	url = git@github.com:getpelican/pelican-plugins.git
