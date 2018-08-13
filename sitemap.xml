@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://tdt.rocks/</loc>
-<lastmod>2017-04-24T01:26:11-00:00</lastmod>
+<lastmod>2018-08-14T00:55:05-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://tdt.rocks/archives.html</loc>
-<lastmod>2017-04-24T01:26:11-00:00</lastmod>
+<lastmod>2018-08-14T00:55:05-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://tdt.rocks/tags.html</loc>
-<lastmod>2017-04-24T01:26:11-00:00</lastmod>
+<lastmod>2018-08-14T00:55:05-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://tdt.rocks/categories.html</loc>
-<lastmod>2017-04-24T01:26:11-00:00</lastmod>
+<lastmod>2018-08-14T00:55:05-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -88,29 +88,29 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://tdt.rocks/tag/systemd.html</loc>
+<loc>http://tdt.rocks/tag/data-recovery.html</loc>
+<lastmod>2017-04-16T03:25:00+02:27</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://tdt.rocks/tag/electronics.html</loc>
+<lastmod>2017-04-16T03:25:00+02:27</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://tdt.rocks/tag/linux.html</loc>
 <lastmod>2015-12-18T03:25:00+02:27</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://tdt.rocks/tag/testing.html</loc>
-<lastmod>1969-12-31T23:59:59+02:27</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://tdt.rocks/tag/nginx.html</loc>
-<lastmod>2015-12-14T03:25:00+02:27</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://tdt.rocks/tag/cache.html</loc>
-<lastmod>2015-12-14T03:25:00+02:27</lastmod>
+<loc>http://tdt.rocks/tag/systemd.html</loc>
+<lastmod>2015-12-18T03:25:00+02:27</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -123,14 +123,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://tdt.rocks/tag/data-recovery.html</loc>
-<lastmod>2017-04-16T03:25:00+02:27</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://tdt.rocks/tag/linux-packages.html</loc>
+<loc>http://tdt.rocks/tag/nginx.html</loc>
 <lastmod>2015-12-14T03:25:00+02:27</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -144,15 +137,22 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>http://tdt.rocks/tag/linux.html</loc>
-<lastmod>2015-12-18T03:25:00+02:27</lastmod>
+<loc>http://tdt.rocks/tag/cache.html</loc>
+<lastmod>2015-12-14T03:25:00+02:27</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>http://tdt.rocks/tag/electronics.html</loc>
-<lastmod>2017-04-16T03:25:00+02:27</lastmod>
+<loc>http://tdt.rocks/tag/linux-packages.html</loc>
+<lastmod>2015-12-14T03:25:00+02:27</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>http://tdt.rocks/tag/testing.html</loc>
+<lastmod>1969-12-31T23:59:59+02:27</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
