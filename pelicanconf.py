@@ -47,6 +47,7 @@ STATIC_PATHS = [
     'CNAME',
     'README.md',
     'BingSiteAuth.xml',
+    'google2213843118173db6.html'
 ]
 
 # code blocks with line numbers
