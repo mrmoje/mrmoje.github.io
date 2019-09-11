@@ -226,24 +226,26 @@ Here's the script that does the above business:-
 
 
 [THE_SHIZNIT]: img/uPy_powerstrip/uPy_powerstrip.jpg "THE SHIZNIT"
-[JITAHADHARI]: img/uPy_powerstrip/jitahadhari.jpg "HIGH VOLTAGE WARNINGS"
+[TAHADHARI]: img/uPy_powerstrip/tahadhari.jpg "HIGH VOLTAGE WARNINGS"
 [ESP12_PIC]: img/uPy_powerstrip/esp12.jpg "ESP12"
 [ESP8266_PIC]: img/uPy_powerstrip/esp8266_esp3.png "ESP8266 on an ESP-03 PCB"
 [G3MB-202P_PIC]: img/uPy_powerstrip/G3MB-202P_plus_schematic.jpg "G3MB-202P and Typical ssr schematic"
 [BC547_G3MB-202P_PIC]: img/uPy_powerstrip/BC547_G3MB-202P.jpg "BC547_G3MB-202P_SCHEMATIC"
 [HLK_PM01_PIC]: img/uPy_powerstrip/HLK_PM01_PIC.jpg "HLK_PM01_PIC"
+[MG4U_PIC]: img/uPy_powerstrip/MG-4U.jpg "MG-4U"
 
 
 
 [WIKIP_RFP]: https://en.wikipedia.org/wiki/Request_for_proposal
-[WIKIP_SoC]: https://en.wikipedia.org/wiki/System_on_a_chip
 [JUMONTW2017]: https://twitter.com/nairobitechweek/status/844512757219295233
 [NTW2017]: http://nairobitechweek.com/
 [PYNBO_180519]:https://www.meetup.com/Python-Nairobi/events/cqbkrqyzhbxb/
 [ESP12]: https://www.esp8266.com/wiki/doku.php?id=esp8266-module-family#esp-12
 [ESP12_DATASHEET]: https://wiki.ai-thinker.com/_media/esp8266/a014ps01.pdf
+[WIKIP_SoC]: https://en.wikipedia.org/wiki/System_on_a_chip
 [ESPRESSIF]: https://www.espressif.com/products/hardware/esp8266ex/overview/
 [ESP8266_DATASHEET]: https://www.espressif.com/sites/default/files/documentation/0a-esp8266ex_datasheet_en.pdf
+[WIKIP_OPTOCOUPLER]: https://en.wikipedia.org/wiki/Opto-isolator
 [MICROPYTHON]: https://micropython.org
 [NEROKAS]: https://store.nerokas.co.ke
 [NEROKAS_G3MB-202P]: https://store.nerokas.co.ke/index.php?route=product/product&product_id=1886
@@ -253,3 +255,5 @@ Here's the script that does the above business:-
 [BC547_DATASHEET]: https://www.onsemi.com/pub/Collateral/BC546-D.PDF
 [HLK-PM01]: http://www.hlktech.net/product_detail.php?ProId=54
 [EASYEDA_PROJECT]: https://easyeda.com/mrmoje/pycon-ke-18-micropython-lampshow
+[MG-4U]: https://sollatek.co.ke/shop/domestic-power-control/voltsafe/multiguard-mg-4u/
+[EASYEDA_PROJECT]: https://easyeda.com/editor#id=cc7ad7dc7a6d46a1a5b45dc8515a1653
