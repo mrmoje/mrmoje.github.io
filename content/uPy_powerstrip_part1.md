@@ -4,7 +4,7 @@ Category: Hardware
 Tags: Hardware, MicroPython, ESP8266, electronics,
 Slug: uPy_powerstrip_part1
 Author: James Nzomo
-Summary: A powerstrip that runs Python 3 and features IEEE 802.11 b/g/n Wi-Fi. Controllable via LAN or the Internet!
+Summary: A powerstrip that runs Python 3 and features IEEE 802.11 b/g/n Wi-Fi. Controllable via LAN and the Internet!
 email: james@tdt.rocks
 about_author: I dedicate my mind to thoughts and deeds on tech:- software and hardware development.
 
@@ -26,7 +26,8 @@ presentation/workshop that we were tasked to come up with and having hobbied a b
 [SoCs][WIKIP_SoC], I thought I'd field something on the topic.
 We thus came up with a lightshow of desklamps toggled by rudimentary prototype-esque hardware all
 controlled by Python. During the presentation session, after taking them through MicroPython
-internals, the participants had abit of fun scripting arbitrary light patterns/sequences in python.
+internals, the participants had a bit of fun scripting arbitrary light patterns/sequences in python.
+Informative and fun.
 
 Few months later, we ran a remix of the session for our [MOB Programming Workshop][JUMONTW2017]
 at [Nairobi Tech Week 2017][NTW2017], toggling connected desklamps by tweeted hashtags and
@@ -36,12 +37,12 @@ again 2 years later, for one of our [Python-Nairobi Meetups][PYNBO_180519] with 
 #Some words of caution
 ![JITAHADHARI][JITAHADHARI]
 This article describes the design and construction of the above described gizmo for
-the sole purpose of demonstrating what's possible with the technologies described herein.
+the sole purpose of demonstrating what's possible with off the shelf tech described herein.
 
-The concepts and design behind the subject device are of hobby quality, have not been
+The concepts and design behind the subject device are of hobby quality. They have not been
 fully thought through and do not adhere to any safety standards.
 The device is neither suitable nor intended for any use ("production" or otherwise)
-appart from illustrating what's possible.
+apart from illustrating what's possible.
 
 This project involves working with mains electricity. This can be fatal!
 Replicate at your own risk! And if you do, make it under the supervision of an expert in the field
@@ -53,23 +54,23 @@ or electronics and or cardiopulmonary resuscitation (CPR).
 Now that that's out of the way, lets talk about the thing from the heart of it all the way up to the mains.
 
 #The Heart of it - ESP12
-The [ESP12][ESP12] (fig.2 below) is really a ESP8266 nicely soldered onto a 24x16mm breakout board with a
-PCB trace WiFi antenna, oscillator, SPI flash memory and afew passives all tucked away under
-a nice square FCC approved RFI sheild. I got the AI-Thinker ones. [Checkout their datasheet][ESP12_DATASHEET]
+The [ESP12][ESP12] (fig.2 below) is really a ESP8266EX nicely soldered onto a 24x16mm breakout board with a
+PCB trace WiFi antenna, oscillator, SPI flash memory and a few passives all tucked away under
+a nice square FCC approved RFI shield. I got the AI-Thinker ones. [Checkout their datasheet][ESP12_DATASHEET]
 
 ![ESP12_PIC][ESP12_PIC]
 ***fig.2 ESP12 in schematic (left). Example AI Thinker ESP-12 PCB right.***
 
-At the core of it is the mentioned [ESP8266EX][ESPRESSIF] (fig.3 below), a system-on-chip (SoC) that integrates (among other things):-
+At the core of it is the mentioned [ESP8266EX][ESPRESSIF] (fig.3 below), a system-on-chip (SoC) ic that integrates (among other things):-
 
-- a Tensilica L106 32-bit RISC processor clocked at 80MHz (or up to 160MHz if it left the factory defect free)
+- a Tensilica L106 32-bit RISC processor clocked at 80MHz (capable of up to 160MHz if it left the factory defect free)
 - 80kB of ram but you only get to work with max 50kB for your data.
 - a 2.4 GHz transceiver radio for Wi-Fi
+- and many other things:-[checkout the datasheet][ESP8266_DATASHEET].
 
 ![ESP8266_PIC][ESP8266_PIC]
 ***fig.3 ESP8266EX (circled in green) on an ESP-03 PCB. USB male connector to the left for size comparison***
 
-For more specs, [checkout the datasheet][ESP8266_DATASHEET].
 
 Meager as it sounds, this SoC is beefy enough to run its own [MicroPython][MICROPYTHON] port
 that provides a python3 interface to all the features within including Wi-Fi and all usable
@@ -80,9 +81,11 @@ Operation is simple:- pull any of those 4 pins high (from code) and the respecti
 gets toggled on via a Solid State Relay (SSR from here on).
 The outcome of reverse is implicit, pull a pin low, off goes the corresponding outlet.
 
+
+
 #Controlling mains - The SSR
 
-To switch the the live pin on each outlet, I decided to go with the first capable
+To switch the live pin on each outlet, I decided to go with the first capable
 (and affordable) SSR I could find on [Nerokas][NEROKAS_G3MB-202P]:- the [G3MB-202P][G3MB-202P_DATASHEET],
 one for each outlet.
 NB:- It's now discontinued. Successor as at time of this writing is OMRON's G3MC series PCB SSR.
@@ -91,27 +94,27 @@ Other manufacturers offer good replacements.
 ![G3MB-202P_PIC][G3MB-202P_PIC]
 ***fig.4 Left:- OMRON G3MB-202P SSR. Right:- schematic of typical SSR***
 
-Comming in a nice compact 20x24.5x5.5mm package and capable of max 2 Amps thru the high voltage side,
-It's more than good enough for the job since we were only going to switch 240V 3-Watt LED lamps with it.
-(For the murrcans, mm here = millimeters. For moonlanding units, divide by 25.4. Also, Apollo used SI units for the critical stuff)
+Coming in a nice compact 20x24.5x5.5mm package and capable of max 2 Amps thru the high voltage side,
+It's more than good enough for the job since we are only going to switch 240V 3-Watt LED lamps with it.
+***(For the murrcans, mm here = millimeters. For moonlanding units, divide by 25.4. Also, Apollo used SI units for the critical stuff)***
 
-Another nice thing is that it provides opto isolation out of the box. Yaani the low and high voltage side
+Another nice thing is that it provides opto-isolation out of the box. Yaani the low and high voltage side
 are electronically isolated by an [optocoupler][WIKIP_OPTOCOUPLER] and all it asks for is 5V to power
 its internal IR LED.
 
-Operation is simple, supply 5V to pins 3(+) & 4(-), and the HV side, pins 1 and 2, complete the AC circuit for you.
-Very oversimplified SSR operation but id like to keep the article simple. If you want more detail on how
+Operation is simple, supply 5V to pins `3(+)` & `4(-)`, and the HV side, pins `1` and `2`, complete the AC circuit for you.
+Very oversimplified SSR operation but I'd like to keep the article simple. If you want more detail on how
 the thing operates, [check this guide out][OMRON_SSR_TECH_EXPLANATION]. Also, good thing to keep in mind
-afew [PRECAUTIONS][OMRON_SSR_PRECAUTIONS] for the compnent. (useful shoudl you decide to replicate)
+a few [PRECAUTIONS][OMRON_SSR_PRECAUTIONS] for the component. (useful should you decide to replicate)
 
 There is one small prollem however, our ESP12 will only put out 3.3V from any of the said 4 GPIO pins
-which is insufficient to switch on our SSR. When any of those pins go high at 3.3, we need to convert
+which is insufficient to switch on our SSR. When any of those GPIO pins go high at 3.3V, we need to convert
 that to a 5V input for the SSR to fully power on (see the datasheet). Thus we require a logic level
 converter of sorts!
 
 #Logic level conv - ESP12 => BC547 => SSR
 
-To carry out the 3.3V to 5V conversion, I chose a NPN transistor as a "low side" switch and I settled
+To carry out the 3.3V to 5V conversion, I chose a NPN transistor as a "low side" switch and settled
 on the BC547 because I had plenty at home not to mention that it's also quite a capable component for the job.
 
 ![BC547_G3MB-202P_PIC][BC547_G3MB-202P_PIC]
