@@ -187,6 +187,43 @@ and tapping neutral at X3.1.
 - Checkout schematic on easyeda here:- [EASYEDA_PROJECT][EASYEDA_PROJECT]
 - Stay tuned for part 2 [3, [4, [5]]] where we look at interesting use cases (including voice control)
 
+In the meantime, here is a low res vidya of the thing running a python script that does a round robin toggle for all 4 ports
+
+<center>
+  <video width="320" height="240" controls>
+    <source src="vid/uPy_powerstrip/round_robin.mp4" type="video/mp4">
+    You seem to be from 1995. Browser does not support the video tag.
+  </video>
+</center>
+
+
+Here's the script that does the above business:-
+
+
+    #!python
+    import machine
+    import utime
+
+
+    pins = [machine.Pin(p, machine.Pin.OUT) for p in [13, 12, 14, 16]]
+
+    for p in pins:
+      p.off()
+
+    def onseq():
+      for pin in pins:
+        pin.on()
+        utime.sleep(1)
+
+    def offseq():
+      for pin in pins:
+        pin.off()
+        utime.sleep(1)
+
+    while 1:
+      onseq()
+      offseq()
+
 
 [THE_SHIZNIT]: img/uPy_powerstrip/uPy_powerstrip.jpg "THE SHIZNIT"
 [JITAHADHARI]: img/uPy_powerstrip/jitahadhari.jpg "HIGH VOLTAGE WARNINGS"
