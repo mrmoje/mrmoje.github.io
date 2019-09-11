@@ -41,6 +41,7 @@ EXTRA_PATH_METADATA = {
 # static paths will be copied without parsing their contents
 STATIC_PATHS = [
     'img',
+    'vid',
     'js',
     'css',
     'extra/robots.txt',
