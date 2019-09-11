@@ -184,7 +184,7 @@ With the earth and neutral rails left intact, supply the board with AC power on 
 and tapping neutral at X3.1.
 
 #Outro
-- Checkout schematic on easyeda here:- [https://easyeda.com/editor#id=cc7ad7dc7a6d46a1a5b45dc8515a1653][https://easyeda.com/editor#id=cc7ad7dc7a6d46a1a5b45dc8515a1653]
+- Checkout schematic on easyeda here:- [EASYEDA_PROJECT][EASYEDA_PROJECT]
 - Stay tuned for part 2 [3, [4, [5]]] where we look at interesting use cases (including voice control)
 
 
