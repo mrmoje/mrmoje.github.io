@@ -32,10 +32,20 @@ Informative and fun.
 Few months later, we ran a remix of the session for our [MOB Programming Workshop][JUMONTW2017]
 at [Nairobi Tech Week 2017][NTW2017], toggling connected desklamps by tweeted hashtags and
 again 2 years later, for one of our [Python-Nairobi Meetups][PYNBO_180519] with refined hardware
-(Pictured in the [Intro][/#INTRO]), the making of which i'll discuss here.
+(Pictured in fig.1 above), which I'll discuss here.
+
+If you're keen to checkout the schematics, [click here for the EASYEDA_PROJECT][EASYEDA_PROJECT].
+Plenty of context therein for this article as I'll be discussing the main components that make it work below.
+
+But first.....
+
 
 #Some words of caution
-![JITAHADHARI][JITAHADHARI]
+
+<center>
+![JITAHADHARI][TAHADHARI]
+</center>
+
 This article describes the design and construction of the above described gizmo for
 the sole purpose of demonstrating what's possible with off the shelf tech described herein.
 
@@ -132,18 +142,19 @@ To make things simple, 1KΩ resistor would suffice - Brown-Black-Red and hopeful
 care of the 32Ω change (or not).
 
 #Power supply
-The power strip gets its supply from the 240v mains, but how do we light up the 5V SSR and 3.3V ESP12?
-We could populate the PCB with a transformer and some rectification extras but were pressed for space on
+The power strip gets its supply from 240V mains (in my side of the world), but how do we light up the 5V SSR and 3.3V ESP12?
+We could populate the PCB with a transformer and some rectification extras but we're pressed for space on
 the board and in our enclosure.
 
-Enter the [HLK-PM01][HLK-PM01] (fig.5 below), an ultra-compact power module that comes in at 34mm x 20mm x 15mm.
+Enter the [HLK-PM01][HLK-PM01] (fig.5 below), an ultra-compact power module that comes in at 34mmx20mmx15mm.
 It takes in 90 to 264V and supplies 5V at max 0.6A current with output noise of "i didn't check"/"not worried about it" decibels.
 
 ![HLK_PM01][HLK_PM01_PIC]
 ***fig.5 ultra-compact 5V power supply module.***
 
-This is more than enough to run all the things on the board and change, but just for fun let's look at ballpark calculations:-
- - 4x OMRON SSR Opto IR LED comming in at total 10mA x4 = 40mA
+This is more than enough to run all the things on the board and then some, but just for fun let's look at ballpark calculations:-
+
+ - 4x OMRON SSR Opto IR LED coming in at total 10mA x4 = 40mA
  - 1x ESP12 at about 80mA average operating voltage (spikes can be taken care of by a CAP yes???)
  - 4x ESP12 pin current draw at total 12mA x4 = 48mA
 
@@ -154,12 +165,23 @@ Finally for our 3.3V ESP12, we step that HLK's 5V down with a linear voltage reg
 With a good enough CAP to sort out the ESP's current spikes, we have our rudimentary powersupply sorting all our electronics.
 
 
-#[WIP] The Enclosure
-One of the goals of this project was to have everything neatly tucked powerstrip enclosure.
-At a local supermarket, i stumbled upon a ![Solatek MG-4U][MG4U] - a 4 port power strip
-with enough room for a 2x3x0.8 inch and change PCB and components (once you yank out the 3 MoV PCB in it)
+# The Enclosure
+One of the goals of this project was to have everything neatly tucked away into an off the shelf powerstrip enclosure.
+At a local supermarket, I stumbled upon a [Solatek MG-4U][MG-4U] - a 4 port power strip (fig. 5 below)
+with enough room for a 72mmx52mm PCB with 25mm height for components (once you chuck the 3 MoV surge protector in it)
 
-Whats also good about this is you can cut the live rail into 4 and there's still enough plastic standoff to hold each piece well
+<center>
+![MG4-4U][MG4U_PIC]
+***fig.6 mg4u powerstrip.***
+</center>
+
+The strip has a nice rigid coper live rail that runs the length of all 4 ports. If you subdivide into 4 there will
+still be enough plastic standoff to hold each port section sturdy-well.
+On each of these pieces, there should be enough real estate to neatly solder a 16 AWG wire which we will connect
+to the respective SSR via screw terminal.
+
+With the earth and neutral rails left intact, supply the board with AC power on he screw terminal X3, routing live thru X3.2
+and tapping neutral at X3.1.
 
 #Outro
 - Checkout schematic on easyeda here:- [https://easyeda.com/editor#id=cc7ad7dc7a6d46a1a5b45dc8515a1653][https://easyeda.com/editor#id=cc7ad7dc7a6d46a1a5b45dc8515a1653]
