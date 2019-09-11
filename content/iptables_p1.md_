@@ -1,0 +1,20 @@
+Title: Firewalls:- Netfilter/IPTables Part 1
+Category: Hardware
+Tags: firewalls, networking, linux, netfilter, iptables
+Slug: fw_netfilter-iptables_p1
+Author: James Nzomo
+Summary: A bit about Linux Kernel Firewall config utility IPTables, Part 1.
+email: james@tdt.rocks
+about_author: I dedicate my mind to thoughts and deeds on tech:- software and hardware development.
+
+#INTRO
+`netfilter` is the framework responsible for massaging network traffic flowing thru the linux kernel.
+It will sort out your mangling, packet filtering, network address and port translation needs.
+If you want to force traffic from a particular traffic through
+`iptables` is one of several utilities or frontends that you would use to configure `netfilter`
+In this first in a series of posts, we'll focus on the latter - the usage of in particular.
+
+#The 10k ft view
+
+
+[NETFILTERHOME]: https://www.netfilter.org
