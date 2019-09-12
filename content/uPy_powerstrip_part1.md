@@ -190,7 +190,7 @@ and tapping neutral at X3.1.
 In the meantime, here is a low res vidya of the thing running a python script that does a round robin toggle for all 4 ports
 
 <center>
-  <video width="320" height="240" controls>
+  <video height="320" controls>
     <source src="vid/uPy_powerstrip/round_robin.mp4" type="video/mp4">
     You seem to be from 1995. Browser does not support the video tag.
   </video>
