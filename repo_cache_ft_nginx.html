@@ -105,74 +105,74 @@ out in one simple sites-available config.</p>
 <h3>The NGINX config</h3>
 <p>The following minimal config sets nginx to handle this biz for the ubuntu
 repos defined there in. Read on...this section continues inside the conf file as comments.</p>
-<div class="highlight"><pre><span></span><span class="err">#</span> <span class="nt">The</span> <span class="nt">upstream</span> <span class="nt">directive</span> <span class="nt">defining</span> <span class="nt">the</span> <span class="nt">backend</span><span class="o">/</span><span class="nt">upstream</span> <span class="nt">repo</span> <span class="nt">hosts</span>
-<span class="err">#</span> <span class="nt">see</span> <span class="nt">http</span><span class="o">://</span><span class="nt">nginx</span><span class="p">.</span><span class="nc">org</span><span class="o">/</span><span class="nt">en</span><span class="o">/</span><span class="nt">docs</span><span class="o">/</span><span class="nt">http</span><span class="o">/</span><span class="nt">ngx_http_upstream_module</span><span class="p">.</span><span class="nc">html</span>
-<span class="err">#</span> <span class="nt">There</span> <span class="nt">is</span> <span class="nt">a</span> <span class="nt">primary</span> <span class="nt">and</span> <span class="nt">a</span> <span class="nt">backup</span><span class="o">.</span> <span class="nt">You</span> <span class="nt">can</span> <span class="nt">have</span> <span class="nt">more</span> <span class="nt">than</span> <span class="nt">that</span><span class="o">.</span>
-<span class="err">#</span> <span class="nt">NGINX</span> <span class="nt">will</span> <span class="nt">try</span> <span class="nt">to</span> <span class="nt">load</span> <span class="nt">balance</span> <span class="nt">between</span> <span class="nt">them</span> <span class="nt">using</span> <span class="nt">a</span> <span class="s2">&quot;weighted round-robin&quot;</span>
-<span class="err">#</span> <span class="nt">algorithm</span><span class="o">.</span>
-<span class="err">#</span> <span class="nt">Most</span> <span class="nt">requests</span> <span class="nt">go</span> <span class="nt">to</span> <span class="nt">the</span> <span class="nt">primary</span><span class="o">,</span> <span class="nt">fewer</span> <span class="nt">to</span> <span class="nt">the</span> <span class="nt">rest</span><span class="o">.</span>
-<span class="err">#</span> <span class="nt">Error</span> <span class="nt">retries</span> <span class="nt">trickle</span> <span class="nt">down</span> <span class="nt">the</span> <span class="nt">server</span> <span class="nt">definitions</span><span class="o">.</span> <span class="nt">If</span> <span class="nt">the</span> <span class="nt">last</span> <span class="nt">errs</span><span class="o">,</span>
-<span class="err">#</span> <span class="nt">the</span> <span class="nt">result</span> <span class="nt">is</span> <span class="nt">passed</span> <span class="nt">on</span> <span class="nt">to</span> <span class="nt">the</span> <span class="nt">client</span><span class="o">.</span>
-<span class="err">#</span> <span class="nt">By</span> <span class="nt">default</span> <span class="nt">I</span> <span class="nt">found</span> <span class="nt">that</span> <span class="nt">if</span> <span class="nt">one</span> <span class="nt">is</span> <span class="nt">unreachable</span> <span class="nt">during</span> <span class="nt">startup</span><span class="o">,</span> <span class="nt">nginx</span> <span class="nt">will</span>
-<span class="err">#</span> <span class="nt">kaput</span> <span class="nt">leaving</span> <span class="nt">clues</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">error</span> <span class="nt">log</span><span class="o">.</span>
-<span class="nt">upstream</span> <span class="nt">ubuntu</span> <span class="p">{</span>
-  <span class="err">server</span> <span class="err">ke.archive.ubuntu.com</span><span class="p">;</span>
-  <span class="err">server</span> <span class="err">archive.ubuntu.com</span> <span class="err">backup</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight"><pre><span></span># <span class="nv">The</span> <span class="nv">upstream</span> <span class="nv">directive</span> <span class="nv">defining</span> <span class="nv">the</span> <span class="nv">backend</span><span class="o">/</span><span class="nv">upstream</span> <span class="nv">repo</span> <span class="nv">hosts</span>
+# <span class="nv">see</span> <span class="nv">http</span>:<span class="o">//</span><span class="nv">nginx</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">en</span><span class="o">/</span><span class="nv">docs</span><span class="o">/</span><span class="nv">http</span><span class="o">/</span><span class="nv">ngx_http_upstream_module</span>.<span class="nv">html</span>
+# <span class="nv">There</span> <span class="nv">is</span> <span class="nv">a</span> <span class="nv">primary</span> <span class="nv">and</span> <span class="nv">a</span> <span class="nv">backup</span>. <span class="nv">You</span> <span class="nv">can</span> <span class="nv">have</span> <span class="nv">more</span> <span class="nv">than</span> <span class="nv">that</span>.
+# <span class="nv">NGINX</span> <span class="nv">will</span> <span class="nv">try</span> <span class="nv">to</span> <span class="nv">load</span> <span class="nv">balance</span> <span class="nv">between</span> <span class="nv">them</span> <span class="nv">using</span> <span class="nv">a</span> <span class="s2">&quot;</span><span class="s">weighted round-robin</span><span class="s2">&quot;</span>
+# <span class="nv">algorithm</span>.
+# <span class="nv">Most</span> <span class="nv">requests</span> <span class="nv">go</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">primary</span>, <span class="nv">fewer</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">rest</span>.
+# <span class="nv">Error</span> <span class="nv">retries</span> <span class="nv">trickle</span> <span class="nv">down</span> <span class="nv">the</span> <span class="nv">server</span> <span class="nv">definitions</span>. <span class="k">If</span> <span class="nv">the</span> <span class="nv">last</span> <span class="nv">errs</span>,
+# <span class="nv">the</span> <span class="nb">result</span> <span class="nv">is</span> <span class="nv">passed</span> <span class="nv">on</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">client</span>.
+# <span class="nv">By</span> <span class="nv">default</span> <span class="nv">I</span> <span class="nv">found</span> <span class="nv">that</span> <span class="k">if</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">unreachable</span> <span class="nv">during</span> <span class="nv">startup</span>, <span class="nv">nginx</span> <span class="nv">will</span>
+# <span class="nv">kaput</span> <span class="nv">leaving</span> <span class="nv">clues</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">error</span> <span class="nv">log</span>.
+<span class="nv">upstream</span> <span class="nv">ubuntu</span> {
+  <span class="nv">server</span> <span class="nv">ke</span>.<span class="nv">archive</span>.<span class="nv">ubuntu</span>.<span class="nv">com</span><span class="c1">;</span>
+  <span class="nv">server</span> <span class="nv">archive</span>.<span class="nv">ubuntu</span>.<span class="nv">com</span> <span class="nv">backup</span><span class="c1">;</span>
+}
 
-<span class="err">#</span> <span class="nt">The</span> <span class="nt">following</span> <span class="nt">directive</span> <span class="nt">configures</span> <span class="nt">the</span> <span class="nt">cache</span><span class="o">.</span> <span class="nt">Storage</span> <span class="nt">et</span> <span class="nt">all</span><span class="o">.</span> <span class="nt">You</span> <span class="nt">may</span> <span class="nt">want</span>
-<span class="err">#</span> <span class="nt">the</span> <span class="nt">storage</span> <span class="nt">location</span>  <span class="nt">at</span> <span class="nt">a</span> <span class="nt">mount</span> <span class="nt">point</span> <span class="nt">with</span> <span class="nt">a</span> <span class="nt">filesystem</span> <span class="nt">on</span> <span class="nt">separate</span> <span class="nt">storage</span>
-<span class="err">#</span> <span class="nt">device</span><span class="o">/</span><span class="nt">backend</span> <span class="nt">to</span> <span class="nt">match</span><span class="o">.</span>
-<span class="err">#</span> <span class="nt">see</span> <span class="nt">http</span><span class="o">://</span><span class="nt">nginx</span><span class="p">.</span><span class="nc">org</span><span class="o">/</span><span class="nt">en</span><span class="o">/</span><span class="nt">docs</span><span class="o">/</span><span class="nt">http</span><span class="o">/</span><span class="nt">ngx_http_proxy_module</span><span class="p">.</span><span class="nc">html</span><span class="p">#</span><span class="nn">proxy_cache_path</span><span class="o">.</span>
-<span class="nt">proxy_cache_path</span> <span class="o">/</span><span class="nt">var</span><span class="o">/</span><span class="nt">repo_mirror</span> <span class="err">#</span> <span class="nt">defines</span> <span class="nt">where</span> <span class="nt">the</span> <span class="nt">cache</span> <span class="nt">is</span> <span class="nt">stashed</span>
+# <span class="nv">The</span> <span class="nv">following</span> <span class="nv">directive</span> <span class="nv">configures</span> <span class="nv">the</span> <span class="nv">cache</span>. <span class="nv">Storage</span> <span class="nv">et</span> <span class="nv">all</span>. <span class="nv">You</span> <span class="nv">may</span> <span class="nv">want</span>
+# <span class="nv">the</span> <span class="nv">storage</span> <span class="nv">location</span>  <span class="nv">at</span> <span class="nv">a</span> <span class="nv">mount</span> <span class="nv">point</span> <span class="nv">with</span> <span class="nv">a</span> <span class="nv">filesystem</span> <span class="nv">on</span> <span class="nv">separate</span> <span class="nv">storage</span>
+# <span class="nv">device</span><span class="o">/</span><span class="nv">backend</span> <span class="nv">to</span> <span class="nv">match</span>.
+# <span class="nv">see</span> <span class="nv">http</span>:<span class="o">//</span><span class="nv">nginx</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">en</span><span class="o">/</span><span class="nv">docs</span><span class="o">/</span><span class="nv">http</span><span class="o">/</span><span class="nv">ngx_http_proxy_module</span>.<span class="nv">html</span>#<span class="nv">proxy_cache_path</span>.
+<span class="nv">proxy_cache_path</span> <span class="o">/</span><span class="nv">var</span><span class="o">/</span><span class="nv">repo_mirror</span> # <span class="nv">defines</span> <span class="nv">where</span> <span class="nv">the</span> <span class="nv">cache</span> <span class="nv">is</span> <span class="nv">stashed</span>
 
-        <span class="err">#</span> <span class="nt">defines</span> <span class="nt">cache</span> <span class="nt">path</span> <span class="nt">heirarchy</span> <span class="o">(</span><span class="nt">yaani</span> <span class="nt">num</span> <span class="nt">directory</span> <span class="nt">levels</span> <span class="nt">in</span> <span class="nt">cache</span><span class="o">)</span>
-        <span class="nt">levels</span><span class="o">=</span><span class="nt">1</span><span class="p">:</span><span class="nd">2</span>
+        # <span class="nv">defines</span> <span class="nv">cache</span> <span class="nv">path</span> <span class="nv">heirarchy</span> <span class="ss">(</span><span class="nv">yaani</span> <span class="nv">num</span> <span class="nv">directory</span> <span class="nv">levels</span> <span class="nv">in</span> <span class="nv">cache</span><span class="ss">)</span>
+        <span class="nv">levels</span><span class="o">=</span><span class="mi">1</span>:<span class="mi">2</span>
 
-        <span class="err">#</span> <span class="nt">defines</span> <span class="nt">name</span> <span class="nt">and</span> <span class="nt">size</span> <span class="nt">of</span> <span class="nt">zone</span> <span class="nt">where</span> <span class="nt">all</span> <span class="nt">cache</span> <span class="nt">keys</span> <span class="nt">and</span> <span class="nt">cache</span> <span class="nt">metadata</span> <span class="nt">are</span> <span class="nt">stashed</span><span class="o">.</span>
-        <span class="err">#</span> <span class="nt">Servers</span> <span class="nt">as</span> <span class="nt">a</span> <span class="nt">lookup</span> <span class="nt">for</span> <span class="nt">cached</span> <span class="nt">data</span>
-        <span class="nt">keys_zone</span><span class="o">=</span><span class="nt">repository_cache</span><span class="p">:</span><span class="nd">50m</span>
+        # <span class="nv">defines</span> <span class="nv">name</span> <span class="nv">and</span> <span class="nv">size</span> <span class="nv">of</span> <span class="nv">zone</span> <span class="nv">where</span> <span class="nv">all</span> <span class="nv">cache</span> <span class="nv">keys</span> <span class="nv">and</span> <span class="nv">cache</span> <span class="nv">metadata</span> <span class="nv">are</span> <span class="nv">stashed</span>.
+        # <span class="nv">Servers</span> <span class="nv">as</span> <span class="nv">a</span> <span class="nv">lookup</span> <span class="k">for</span> <span class="nv">cached</span> <span class="nv">data</span>
+        <span class="nv">keys_zone</span><span class="o">=</span><span class="nv">repository_cache</span>:<span class="mi">50</span><span class="nv">m</span>
 
-        <span class="err">#</span> <span class="nt">The</span> <span class="nt">cached</span> <span class="nt">data</span> <span class="nt">access</span> <span class="nt">timeout</span><span class="o">.</span> <span class="nt">Pkgs</span> <span class="nt">get</span> <span class="nt">nuked</span> <span class="nt">if</span> <span class="nt">no</span> <span class="nt">access</span> <span class="nt">in</span> <span class="nt">14</span> <span class="nt">days</span><span class="o">.</span>
-        <span class="nt">inactive</span><span class="o">=</span><span class="nt">14d</span>
+        # <span class="nv">The</span> <span class="nv">cached</span> <span class="nv">data</span> <span class="nv">access</span> <span class="nb">timeout</span>. <span class="nv">Pkgs</span> <span class="nv">get</span> <span class="nv">nuked</span> <span class="k">if</span> <span class="nv">no</span> <span class="nv">access</span> <span class="nv">in</span> <span class="mi">14</span> <span class="nv">days</span>.
+        <span class="nv">inactive</span><span class="o">=</span><span class="mi">14</span><span class="nv">d</span>
 
-        <span class="err">#</span> <span class="nt">Cache</span> <span class="nt">size</span> <span class="nt">limit</span>
-        <span class="nt">max_size</span><span class="o">=</span><span class="nt">100g</span><span class="o">;</span>
+        # <span class="nv">Cache</span> <span class="nv">size</span> <span class="nv">limit</span>
+        <span class="nv">max_size</span><span class="o">=</span><span class="mi">100</span><span class="nv">g</span><span class="c1">;</span>
 
-<span class="err">#</span> <span class="nt">Our</span> <span class="nt">no-name</span> <span class="nt">server</span> <span class="nt">block</span>
-<span class="nt">server</span> <span class="p">{</span>
+# <span class="nv">Our</span> <span class="nv">no</span><span class="o">-</span><span class="nv">name</span> <span class="nv">server</span> <span class="nv">block</span>
+<span class="nv">server</span> {
 
-  <span class="err">#</span> <span class="err">Keep</span> <span class="err">our</span> <span class="err">eyes</span> <span class="err">peeled</span> <span class="err">on</span> <span class="err">port</span> <span class="err">80</span>
-  <span class="err">listen</span> <span class="err">80</span><span class="p">;</span>
+  # <span class="nv">Keep</span> <span class="nv">our</span> <span class="nv">eyes</span> <span class="nv">peeled</span> <span class="nv">on</span> <span class="nv">port</span> <span class="mi">80</span>
+  <span class="nv">listen</span> <span class="mi">80</span><span class="c1">;</span>
 
-  <span class="err">#</span> <span class="err">Location</span> <span class="err">directive</span> <span class="err">for</span> <span class="err">the</span> <span class="err">/ubuntu</span> <span class="err">path</span>
-  <span class="err">location</span> <span class="err">/ubuntu</span> <span class="err">{</span>
-    <span class="err">#</span> <span class="err">our</span> <span class="err">cache&#39;s</span> <span class="err">root</span>
-    <span class="err">root</span> <span class="err">/var/repo_mirror/index_data</span><span class="p">;</span>
+  # <span class="nv">Location</span> <span class="nv">directive</span> <span class="k">for</span> <span class="nv">the</span> <span class="o">/</span><span class="nv">ubuntu</span> <span class="nv">path</span>
+  <span class="nv">location</span> <span class="o">/</span><span class="nv">ubuntu</span> {
+    # <span class="nv">our</span> <span class="nv">cache</span><span class="s1">&#39;</span><span class="s">s root</span>
+    <span class="nv">root</span> <span class="o">/</span><span class="nv">var</span><span class="o">/</span><span class="nv">repo_mirror</span><span class="o">/</span><span class="nv">index_data</span><span class="c1">;</span>
 
-    <span class="err">#</span> <span class="err">look</span> <span class="err">for</span> <span class="err">packages</span> <span class="err">in</span> <span class="err">the</span> <span class="err">following</span> <span class="err">order</span>
-    <span class="err">try_files</span> <span class="err">$uri</span> <span class="err">@ubuntu</span><span class="p">;</span>
-  <span class="p">}</span>
+    # <span class="nv">look</span> <span class="k">for</span> <span class="nv">packages</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">following</span> <span class="nv">order</span>
+    <span class="nv">try_files</span> $<span class="nv">uri</span> @<span class="nv">ubuntu</span><span class="c1">;</span>
+  }
 
-  <span class="err">#</span> <span class="nt">Location</span> <span class="nt">directive</span> <span class="nt">for</span> <span class="nt">the</span> <span class="nt">named</span> <span class="nt">location</span> <span class="nt">defined</span> <span class="nt">above</span>
-  <span class="nt">location</span> <span class="p">@</span><span class="k">ubuntu</span> <span class="p">{</span>
+  # <span class="nv">Location</span> <span class="nv">directive</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">named</span> <span class="nv">location</span> <span class="nv">defined</span> <span class="nv">above</span>
+  <span class="nv">location</span> @<span class="nv">ubuntu</span> {
 
-    <span class="err">#</span> <span class="nt">map</span> <span class="nt">this</span> <span class="nt">to</span> <span class="nt">the</span> <span class="nt">upstream</span> <span class="nt">definition</span> <span class="nt">above</span>
-    <span class="nt">proxy_pass</span> <span class="nt">http</span><span class="o">://</span><span class="nt">ubuntu</span><span class="o">;</span>
+    # <span class="nv">map</span> <span class="nv">this</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">upstream</span> <span class="nv">definition</span> <span class="nv">above</span>
+    <span class="nv">proxy_pass</span> <span class="nv">http</span>:<span class="o">//</span><span class="nv">ubuntu</span><span class="c1">;</span>
 
-    <span class="err">#</span> <span class="nt">14days</span> <span class="nt">of</span> <span class="nt">caching</span> <span class="nt">for</span> <span class="nt">http</span> <span class="nt">code</span> <span class="nt">200</span> <span class="nt">response</span> <span class="nt">content</span>
-    <span class="nt">proxy_cache_valid</span> <span class="nt">200</span> <span class="nt">14d</span><span class="o">;</span>
+    # <span class="mi">14</span><span class="nv">days</span> <span class="nv">of</span> <span class="nv">caching</span> <span class="k">for</span> <span class="nv">http</span> <span class="nv">code</span> <span class="mi">200</span> <span class="nv">response</span> <span class="nv">content</span>
+    <span class="nv">proxy_cache_valid</span> <span class="mi">200</span> <span class="mi">14</span><span class="nv">d</span><span class="c1">;</span>
 
-    <span class="err">#</span> <span class="nt">we</span> <span class="nt">set</span> <span class="nt">our</span> <span class="s2">&quot;repository_cache&quot;</span> <span class="nt">zone</span> <span class="nt">for</span> <span class="nt">caching</span>
-    <span class="nt">proxy_cache</span> <span class="nt">repository_cache</span><span class="o">;</span>
+    # <span class="nv">we</span> <span class="nv">set</span> <span class="nv">our</span> <span class="s2">&quot;</span><span class="s">repository_cache</span><span class="s2">&quot;</span> <span class="nv">zone</span> <span class="k">for</span> <span class="nv">caching</span>
+    <span class="nv">proxy_cache</span> <span class="nv">repository_cache</span><span class="c1">;</span>
 
-    <span class="err">#</span> <span class="nt">Use</span> <span class="nt">stale</span> <span class="nt">cached</span> <span class="nt">data</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">error</span> <span class="nt">events</span> <span class="nt">defined</span>
-    <span class="nt">proxy_cache_use_stale</span> <span class="nt">error</span> <span class="nt">timeout</span> <span class="nt">invalid_header</span> <span class="nt">updating</span><span class="o">;</span>
+    # <span class="nv">Use</span> <span class="nv">stale</span> <span class="nv">cached</span> <span class="nv">data</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">error</span> <span class="nv">events</span> <span class="nv">defined</span>
+    <span class="nv">proxy_cache_use_stale</span> <span class="nv">error</span> <span class="nb">timeout</span> <span class="nv">invalid_header</span> <span class="nv">updating</span><span class="c1">;</span>
 
-    <span class="err">#</span> <span class="nt">pass</span> <span class="nt">request</span> <span class="nt">to</span> <span class="nt">next</span> <span class="o">(</span><span class="nt">backup</span><span class="o">)</span> <span class="nt">server</span> <span class="nt">in</span> <span class="nt">the</span> <span class="nt">error</span> <span class="nt">events</span> <span class="nt">defined</span>
-    <span class="nt">proxy_next_upstream</span> <span class="nt">error</span> <span class="nt">timeout</span> <span class="nt">invalid_header</span> <span class="nt">http_500</span> <span class="nt">http_502</span> <span class="nt">http_503</span> <span class="nt">http_504</span><span class="o">;</span>
-  <span class="p">}</span>
-<span class="err">}</span>
+    # <span class="nv">pass</span> <span class="nv">request</span> <span class="nv">to</span> <span class="k">next</span> <span class="ss">(</span><span class="nv">backup</span><span class="ss">)</span> <span class="nv">server</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">error</span> <span class="nv">events</span> <span class="nv">defined</span>
+    <span class="nv">proxy_next_upstream</span> <span class="nv">error</span> <span class="nb">timeout</span> <span class="nv">invalid_header</span> <span class="nv">http_500</span> <span class="nv">http_502</span> <span class="nv">http_503</span> <span class="nv">http_504</span><span class="c1">;</span>
+  }
+}
 </pre></div>
 
 
@@ -278,7 +278,7 @@ with life, every now and then, somebody has to take one for the team. C'est la V
 <footer class="footer">
   <div class="container">
     <p class="text-center">
-      &copy;Twenny Seventeen - James Nzomo, <a href="" target="_blank"></a> unless otherwise noted.
+      &copy;Twenny Nineteen - James Nzomo, <a href="" target="_blank"></a> unless otherwise noted.
     </p>
     <div class="text-center">
       Generated by <a href="http://getpelican.com" target="_blank">Pelican</a>

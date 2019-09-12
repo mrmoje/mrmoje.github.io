@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="./fw_netfilter-iptables_p1.html" />
+
+    <title>  TDT &mdash; Firewalls:- Netfilter/IPTables Part 1
+</title>
+
+
+
+      <link type="application/atom+xml" rel="alternate" href="/feed/atom.xml"  title="TDT Atom Feed">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./theme/css/pygments.css">
+    <link rel="stylesheet" href="./theme/css/style.css">
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <meta name="author" content="James Nzomo">
+    <meta name="description" content="A bit about Linux Kernel Firewall config utility IPTables, Part 1.">
+  <meta name="tags" contents="firewalls, networking, linux, netfilter, iptables, ">
+</head>
+
+<body>
+<header class="header">
+  <div class="container">
+    <div class="header-inner">
+      <!-- <h3 class="header-text">Thoughts & Deeds on Tech</h3> -->
+      <ul class="header-menu list-inline text-right">
+        <li><a class="nodec" href="./categories.html">Categories</a></li>
+        <li class="muted">|</li>
+
+        <li><a class="nodec social-link icon-github" href="https://github.com/mrmoje" target="_blank"></a></li>
+        <li><a class="nodec social-link icon-twitter" href="https://twitter.com/mrmoje" target="_blank"></a></li>
+        <li><a class="nodec social-link icon-rss" href="http://tdt.rocks/feed/atom.xml" target="_blank"></a></li>
+        <li><a class="nodec social-link icon-stackoverflow" href="https://stackoverflow.com/users/1002644/moje" target="_blank"></a></li>
+      </ul>
+      <h1 class="header-name">
+        <a id="sitename" class="nodec" href=".">TDT</a>
+      </h1>
+    </div>
+  </div>
+
+</header> <!-- /.header -->  <div class="container">
+  <div class="post full-post">
+    <h1 class="post-title">
+      <a href="/fw_netfilter-iptables_p1.html" title="Permalink to Firewalls:- Netfilter/IPTables Part 1">Firewalls:- Netfilter/IPTables Part 1</a>
+    </h1>
+    <hr>
+    <ul class="list-inline">
+      <li class="post-date">
+        <a class="text-muted" href="/fw_netfilter-iptables_p1.html" title="1969-12-31T23:59:59+03:00">December 31, 1969</a>
+      </li>
+      <li class="muted">&middot;</li>
+      <li class="post-category">
+        <a href="./category/hardware.html">Hardware</a>
+      </li>
+        <li class="muted">&middot;</li>
+        <li>
+            <a href="/tag/firewalls.html">firewalls</a>,             <a href="/tag/networking.html">networking</a>,             <a href="/tag/linux.html">linux</a>,             <a href="/tag/netfilter.html">netfilter</a>,             <a href="/tag/iptables.html">iptables</a>        </li>
+        <li class="muted">&middot;</li>
+        <li>
+          <address class="post-author">
+            By <a href="./author/james-nzomo.html">James Nzomo</a>
+          </address>
+        </li>
+    </ul>
+    <div class="post-content">
+      <h1>INTRO</h1>
+<p><code>netfilter</code> is the framework responsible for massaging network traffic flowing thru the linux kernel.
+It will sort out your mangling, packet filtering, network address and port translation needs.
+If you want to force traffic from a particular traffic through
+<code>iptables</code> is one of several utilities or frontends that you would use to configure <code>netfilter</code>
+In this first in a series of posts, we'll focus on the latter - the usage of in particular.</p>
+<h1>The 10k ft view</h1>
+    </div>
+  </div>
+  <hr class="separator">
+  <div>
+  <div id="disqus_thread">
+    <script>
+      var disqus_shortname = 'tdtrocks';
+      (function() {
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] ||
+         document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href="https://disqus.com/?ref_noscript=tdtrocks">
+        comments powered by Disqus.
+      </a>
+    </noscript>
+    <a href="https://disqus.com" class="dsq-brlink">
+      blog comments powered by <span class="logo-disqus">Disqus</span>
+    </a>
+  </div>
+  </div>
+  </div>
+<footer class="footer">
+  <div class="container">
+    <p class="text-center">
+      &copy;Twenny Nineteen - James Nzomo, <a href="" target="_blank"></a> unless otherwise noted.
+    </p>
+    <div class="text-center">
+      Generated by <a href="http://getpelican.com" target="_blank">Pelican</a>
+      with a <a href="http://github.com/mrmoje/pelican-alchemy" target="_blank">copy-pasta</a>
+      of <a href="https://nairobilug.or.ke" target="_blank" >NairobiLUG's</a>
+      <a href="http://github.com/nairobilug/pelican-alchemy" target="_blank">alchemy</a> theme, <br/>
+      which inturn is a copy-pasta of Porter's <a href="https://github.com/porterjamesj/crowsfoot" target="_blank">crowsfoot</a> theme. <br/>
+      --- end of <a href="//tdt.rocks/pages/glossary#google-juice">google juice</a> ---.
+    </div>
+  </div>
+</footer> <!-- /.footer -->
+  <script src="./theme/js/jquery.min.js"></script>
+  <script src="./theme/js/bootstrap.min.js"></script>
+</body> <!-- 42 -->
+
+</html>
