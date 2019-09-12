@@ -136,7 +136,7 @@ and tapping neutral at X3.1.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;In the meantime, here is a low res vidya of the thing running a python script that does a round robin toggle for all 4 ports&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
-  &lt;video width="320" height="240" controls&gt;
+  &lt;video height="320" controls&gt;
     &lt;source src="vid/uPy_powerstrip/round_robin.mp4" type="video/mp4"&gt;
     You seem to be from 1995. Browser does not support the video tag.
   &lt;/video&gt;
