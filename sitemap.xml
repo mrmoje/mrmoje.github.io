@@ -5,28 +5,28 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>http://tdt.rocks/</loc>
-<lastmod>2019-09-12T04:32:25-00:00</lastmod>
+<lastmod>2019-09-12T04:39:09-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://tdt.rocks/archives.html</loc>
-<lastmod>2019-09-12T04:32:25-00:00</lastmod>
+<lastmod>2019-09-12T04:39:09-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://tdt.rocks/tags.html</loc>
-<lastmod>2019-09-12T04:32:25-00:00</lastmod>
+<lastmod>2019-09-12T04:39:09-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>http://tdt.rocks/categories.html</loc>
-<lastmod>2019-09-12T04:32:25-00:00</lastmod>
+<lastmod>2019-09-12T04:39:09-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
