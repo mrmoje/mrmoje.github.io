@@ -102,6 +102,14 @@ repos defined there in. Read on...this section continues inside the conf file as
         # map this to the upstream definition above
         proxy_pass http://ubuntu;
 
+        # Update 20201127,
+        # for some good measure, set the host header (just incase the upstream insists on it)
+        # See:-
+        # - https://bugs.launchpad.net/ubuntu/+source/apt/+bug/1838771
+        # - https://twitter.com/Zulgrib/status/1324146475685826561
+        # How to cater for the backup I hear you ask? ...well thats an exercise for the reader ;)
+        proxy_set_header Host ke.archive.ubuntu.com;
+
         # 14days of caching for http code 200 response content
         proxy_cache_valid 200 14d;
 
