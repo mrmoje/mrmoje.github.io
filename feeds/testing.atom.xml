@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>TDT - Testing</title><link href="http://tdt.rocks/" rel="alternate"></link><link href="http://tdt.rocks/feeds/testing.atom.xml" rel="self"></link><id>http://tdt.rocks/</id><updated>1969-12-31T23:59:59+03:00</updated><entry><title>TEST POST</title><link href="http://tdt.rocks/testing.html" rel="alternate"></link><published>1969-12-31T23:59:59+03:00</published><updated>1969-12-31T23:59:59+03:00</updated><author><name>James Nzomo</name></author><id>tag:tdt.rocks,1969-12-31:/testing.html</id><summary type="html">&lt;p&gt;A simple test post...complete with a PAL test pattern and an annoying complementary 1KHz tone - just for your ears.&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;center&gt;
 &lt;img alt="PM5544" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/PM5544_with_non-PAL_signals.png"&gt;&lt;/p&gt;
 &lt;h2&gt;Problem? &amp;rarr; &lt;button onclick=osc.stop()&gt;STFU!&lt;/button&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;/center&gt;
+&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;script type="text/javascript"&gt;
 var context = new AudioContext();
 var osc = context.createOscillator();
@@ -14,7 +14,8 @@ vol.connect(context.destination);
 osc.start(0);
 // Problem?
 //osc.stop();
-&lt;/script&gt;&lt;/p&gt;
+&lt;/script&gt;
+
 &lt;hr&gt;
 
 &lt;h1&gt;TEST CONTENT&lt;/h1&gt;
@@ -42,15 +43,14 @@ gun in American crime. Like they're actually proud of that shit.&lt;/p&gt;
 3
 4
 5
-6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;//function sets&lt;/span&gt;
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;//function sets&lt;/span&gt;
 &lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;set_portAbit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;unsigned&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="n"&gt;bt&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;bool&lt;/span&gt; &lt;span class="n"&gt;val&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="n"&gt;val&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;sPORTA&lt;/span&gt; &lt;span class="o"&gt;|=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;bt&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="n"&gt;sPORTA&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;=&lt;/span&gt; &lt;span class="o"&gt;~&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;bt&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
     &lt;span class="n"&gt;PORTA&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sPORTA&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-
 &lt;h3&gt;Paragraph two&lt;/h3&gt;
 &lt;p&gt;Well, the way they make shows is, they make one show. That show's called a pilot.
 Then they show that show to the people who make shows, and on the strength of
@@ -120,7 +120,7 @@ we are connected, you and I. We're on the same curve, just on opposite ends.&lt;
 52
 53
 54
-55&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;xc.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+55&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;xc.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdbool.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;string.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
@@ -175,9 +175,8 @@ we are connected, you and I. We're on the same curve, just on opposite ends.&lt;
     &lt;span class="n"&gt;buzz_ok&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
     &lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-
 &lt;hr&gt;
 &lt;p&gt;List of Links:&lt;/p&gt;
 &lt;ul&gt;
@@ -208,4 +207,4 @@ we are connected, you and I. We're on the same curve, just on opposite ends.&lt;
 &lt;li&gt;https://github.com/Python-Nairobi&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</content><category term="testing"></category></entry></feed>
+&lt;/ol&gt;</content><category term="Testing"></category><category term="testing"></category></entry></feed>

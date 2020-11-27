@@ -87,7 +87,7 @@
       <p><center>
 <img alt="PM5544" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/PM5544_with_non-PAL_signals.png"></p>
 <h2>Problem? &rarr; <button onclick=osc.stop()>STFU!</button></h2>
-<p></center>
+<p></center></p>
 <script type="text/javascript">
 var context = new AudioContext();
 var osc = context.createOscillator();
@@ -99,7 +99,8 @@ vol.connect(context.destination);
 osc.start(0);
 // Problem?
 //osc.stop();
-</script></p>
+</script>
+
 <hr>
 
 <h1>TEST CONTENT</h1>
@@ -127,15 +128,14 @@ gun in American crime. Like they're actually proud of that shit.</p>
 3
 4
 5
-6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">//function sets</span>
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1">//function sets</span>
 <span class="kt">void</span> <span class="nf">set_portAbit</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">bt</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">val</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">val</span> <span class="o">?</span> <span class="p">(</span> <span class="n">sPORTA</span> <span class="o">|=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">bt</span> <span class="p">)</span> <span class="o">:</span> <span class="p">(</span> <span class="n">sPORTA</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">bt</span><span class="p">)</span> <span class="p">);</span>
     <span class="n">PORTA</span> <span class="o">=</span> <span class="n">sPORTA</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
-
 <h3>Paragraph two</h3>
 <p>Well, the way they make shows is, they make one show. That show's called a pilot.
 Then they show that show to the people who make shows, and on the strength of
@@ -205,7 +205,7 @@ we are connected, you and I. We're on the same curve, just on opposite ends.</p>
 52
 53
 54
-55</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;xc.h&gt;</span><span class="cp"></span>
+55</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;xc.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp"></span>
 <span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp"></span>
@@ -260,9 +260,8 @@ we are connected, you and I. We're on the same curve, just on opposite ends.</p>
     <span class="n">buzz_ok</span><span class="p">();</span>
     <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 </td></tr></table>
-
 <hr>
 <p>List of Links:</p>
 <ul>

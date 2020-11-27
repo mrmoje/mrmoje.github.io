@@ -136,11 +136,12 @@ and tapping neutral at X3.1.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;p&gt;In the meantime, here is a low res vidya of the thing running a python script that does a round robin toggle for all 4 ports&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;
-  &lt;video height="320" controls&gt;
+&lt;br&gt;
+&lt;video height="320" controls&gt;
     &lt;source src="vid/uPy_powerstrip/round_robin.mp4" type="video/mp4"&gt;
     You seem to be from 1995. Browser does not support the video tag.
-  &lt;/video&gt;
-&lt;/center&gt;&lt;/p&gt;
+  &lt;/video&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/center&gt;&lt;/p&gt;
 &lt;p&gt;Here's the script that does the above business:-&lt;/p&gt;
 &lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
  2
@@ -163,7 +164,7 @@ and tapping neutral at X3.1.&lt;/p&gt;
 19
 20
 21
-22&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;machine&lt;/span&gt;
+22&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;machine&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;utime&lt;/span&gt;
 
 
@@ -185,5 +186,5 @@ and tapping neutral at X3.1.&lt;/p&gt;
 &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
   &lt;span class="n"&gt;onseq&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
   &lt;span class="n"&gt;offseq&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</content><category term="Hardware"></category><category term="MicroPython"></category><category term="ESP8266"></category><category term="electronics"></category></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</content><category term="Hardware"></category><category term="Hardware"></category><category term="MicroPython"></category><category term="ESP8266"></category><category term="electronics"></category></entry></feed>

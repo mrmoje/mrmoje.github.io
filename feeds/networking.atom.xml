@@ -89,29 +89,26 @@ plugged into usb port #1.&lt;/p&gt;
 &lt;h3&gt;systemd-udev Naming Policy&lt;/h3&gt;
 &lt;p&gt;Net devices may have more than one name generated for them which you can
 view by querying the udev database (filtering the results):-  &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;udevadm info -q property -p /sys/class/net/ens33 &lt;span class="p"&gt;|&lt;/span&gt; grep ID_NET_NAME
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;udevadm info -q property -p /sys/class/net/ens33 &lt;span class="p"&gt;|&lt;/span&gt; grep ID_NET_NAME
 &lt;span class="nv"&gt;ID_NET_NAME_MAC&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;enx112233445566
 &lt;span class="nv"&gt;ID_NET_NAME_PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;enp2s0
 &lt;span class="nv"&gt;ID_NET_NAME_SLOT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;ens33
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;In the above example, we have names by mac, location and bios provided index.
 The choice of name is determined by a list if policies defined for &lt;code&gt;NamePolicy&lt;/code&gt;
 in the respective link config file (see &lt;code&gt;man systemd.link&lt;/code&gt;). To find out what
 link file is in use, query udevadm like so:-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;udevadm info -q property -p /sys/class/net/ens33 &lt;span class="p"&gt;|&lt;/span&gt; grep LINK_FILE
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;udevadm info -q property -p /sys/class/net/ens33 &lt;span class="p"&gt;|&lt;/span&gt; grep LINK_FILE
 &lt;span class="nv"&gt;ID_NET_LINK_FILE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;/lib/systemd/network/99-default.link
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;I get 99-default.link, contents of which are:-&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cat /lib/systemd/network/99-default.link
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;cat /lib/systemd/network/99-default.link
 &lt;span class="o"&gt;[&lt;/span&gt;Link&lt;span class="o"&gt;]&lt;/span&gt;
 &lt;span class="nv"&gt;NamePolicy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;kernel database onboard slot path
 &lt;span class="nv"&gt;MACAddressPolicy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;persistent
-&lt;/pre&gt;&lt;/div&gt;
-
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Looking at the &lt;code&gt;NamePolicy&lt;/code&gt; entry, the precedence is defined by the order
 in which they appear and the first successful one is used to set the device name.
@@ -131,4 +128,4 @@ and &lt;code&gt;biosdevname=0&lt;/code&gt; to the kernel at boot time.&lt;/p&gt;
 &lt;li&gt;&lt;a href="http://linux.dell.com/cgi-bin/cgit.cgi/biosdevname.git/tree/src/naming_policy.c?id=e51172768cec37ab0a350e439d2827b0c4e604a4#n31" target="_blank"&gt;biosdevname naming policy source&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://ivi.fnwi.uva.nl/sne/air//wiki/LogicalInterfaceNames/" target="_blank"&gt;An ice article on classic naming scheme and problem workarounds&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="http://www.amazon.com/gp/product/B00PKTGLWM?psc=1&amp;amp;redirect=true&amp;amp;ref_=oh_aui_d_detailpage_o00" target="_blank"&gt;How Linux Works: What Every Superuser Should Know&lt;/a&gt; by Brian Ward&lt;/li&gt;
-&lt;/ul&gt;</content><category term="linux"></category><category term="systemd"></category><category term="network interfaces"></category></entry></feed>
+&lt;/ul&gt;</content><category term="Networking"></category><category term="linux"></category><category term="systemd"></category><category term="network interfaces"></category></entry></feed>

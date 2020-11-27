@@ -174,29 +174,26 @@ plugged into usb port #1.</p>
 <h3>systemd-udev Naming Policy</h3>
 <p>Net devices may have more than one name generated for them which you can
 view by querying the udev database (filtering the results):-  </p>
-<div class="highlight"><pre><span></span>udevadm info -q property -p /sys/class/net/ens33 <span class="p">|</span> grep ID_NET_NAME
+<div class="highlight"><pre><span></span><code>udevadm info -q property -p /sys/class/net/ens33 <span class="p">|</span> grep ID_NET_NAME
 <span class="nv">ID_NET_NAME_MAC</span><span class="o">=</span>enx112233445566
 <span class="nv">ID_NET_NAME_PATH</span><span class="o">=</span>enp2s0
 <span class="nv">ID_NET_NAME_SLOT</span><span class="o">=</span>ens33
-</pre></div>
-
+</code></pre></div>
 
 <p>In the above example, we have names by mac, location and bios provided index.
 The choice of name is determined by a list if policies defined for <code>NamePolicy</code>
 in the respective link config file (see <code>man systemd.link</code>). To find out what
 link file is in use, query udevadm like so:-</p>
-<div class="highlight"><pre><span></span>udevadm info -q property -p /sys/class/net/ens33 <span class="p">|</span> grep LINK_FILE
+<div class="highlight"><pre><span></span><code>udevadm info -q property -p /sys/class/net/ens33 <span class="p">|</span> grep LINK_FILE
 <span class="nv">ID_NET_LINK_FILE</span><span class="o">=</span>/lib/systemd/network/99-default.link
-</pre></div>
-
+</code></pre></div>
 
 <p>I get 99-default.link, contents of which are:-</p>
-<div class="highlight"><pre><span></span>cat /lib/systemd/network/99-default.link
+<div class="highlight"><pre><span></span><code>cat /lib/systemd/network/99-default.link
 <span class="o">[</span>Link<span class="o">]</span>
 <span class="nv">NamePolicy</span><span class="o">=</span>kernel database onboard slot path
 <span class="nv">MACAddressPolicy</span><span class="o">=</span>persistent
-</pre></div>
-
+</code></pre></div>
 
 <p>Looking at the <code>NamePolicy</code> entry, the precedence is defined by the order
 in which they appear and the first successful one is used to set the device name.
